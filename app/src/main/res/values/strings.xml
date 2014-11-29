@@ -4,5 +4,10 @@
     <string name="app_name">GradleDoc</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="app_title">Gradle 用户指南 1.12</string>
+    <string name="action_about">关于</string>
+    <string name="action_refresh">刷新</string>
+    <string name="refreshing">正在刷新</string>
+
 
 </resources>
