@@ -8,6 +8,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.githang.gradledoc.Consts;
 import com.githang.gradledoc.R;
@@ -20,13 +23,15 @@ public class ContentsActivity extends ActionBarActivity {
 
     private ActionBar mActionBar;
     private ProgressDialog mProgressDialog;
+    private ListView mListView;
 
     private HttpProxy mHttpProxy;
     private Context mContext;
     private ContentsHandler mContentsHandler = new ContentsHandler(){
         @Override
         public void onResult(List<ChapterUrl> chapterUrls) {
-
+            ArrayAdapter<ChapterUrl> adapter = new ArrayAdapter<ChapterUrl>(mContext, R.layout.item_contents, chapterUrls);
+            mListView.setAdapter(adapter);
         }
 
         @Override
@@ -43,6 +48,9 @@ public class ContentsActivity extends ActionBarActivity {
         mContext = this;
         mHttpProxy = HttpProxy.getInstance(this);
         setContentView(R.layout.activity_contents);
+        mListView = (ListView) findViewById(R.id.contents);
+        mListView.addHeaderView(new View(this));
+        mListView.addFooterView(new View(this));
         mActionBar = getSupportActionBar();
         mActionBar.setTitle(R.string.app_title);
         mProgressDialog = new ProgressDialog(this);
@@ -54,9 +62,11 @@ public class ContentsActivity extends ActionBarActivity {
                 mHttpProxy.cancelRequests(mContext);
             }
         });
+
+        requestContents();
     }
 
-    private void request() {
+    private void requestContents() {
         HttpProxy.getInstance(this).requestUrl(this, Consts.USER_GUIDE, mContentsHandler);
     }
 

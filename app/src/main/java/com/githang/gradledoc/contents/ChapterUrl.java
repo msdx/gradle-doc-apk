@@ -27,4 +27,8 @@ public class ChapterUrl {
         this.url = url;
     }
 
+    @Override
+    public String toString() {
+        return chapter;
+    }
 }

@@ -5,11 +5,16 @@
                 tools:context=".MainActivity">
 
     <ListView
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:id="@+id/contents"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:headerDividersEnabled="true"
         android:footerDividersEnabled="true"
+        android:scrollbars="none"
+        android:divider="@android:color/transparent"
+        android:listSelector="@android:color/transparent"
         android:layout_width="match_parent"
         android:dividerHeight="10dp"
+        tools:listitem="@layout/item_contents"
         android:layout_height="match_parent"/>
 </RelativeLayout>

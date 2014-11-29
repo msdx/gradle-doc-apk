@@ -1,5 +1,7 @@
 package com.githang.gradledoc.contents;
 
+import android.util.Log;
+
 import com.githang.gradledoc.datasource.AbstractResponse;
 
 import org.jsoup.Jsoup;
@@ -20,9 +22,10 @@ public abstract class ContentsHandler implements AbstractResponse{
     private static final String LOG_TAG = ContentsHandler.class.getSimpleName();
     @Override
     public void onSuccess(String response) {
-//        Log.d(LOG_TAG, response);
+        Log.d(LOG_TAG, response);
         Document doc = Jsoup.parse(response);
-        Elements elements = doc.select("span#chapter");
+        Elements elements = doc.select("span.chapter");
+        Log.d(LOG_TAG, "elements size " + elements.size());
         List<ChapterUrl> chapterUrls = new ArrayList<>();
         for(Element elem : elements) {
             ChapterUrl url = new ChapterUrl();
@@ -30,6 +33,7 @@ public abstract class ContentsHandler implements AbstractResponse{
             url.setChapter(elem.text());
             chapterUrls.add(url);
         }
+        onResult(chapterUrls);
     }
 
     public abstract void onResult(List<ChapterUrl> chapterUrls);
