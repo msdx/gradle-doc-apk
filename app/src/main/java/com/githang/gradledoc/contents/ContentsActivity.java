@@ -13,6 +13,8 @@ import com.githang.gradledoc.Consts;
 import com.githang.gradledoc.R;
 import com.githang.gradledoc.datasource.HttpProxy;
 
+import java.util.List;
+
 
 public class ContentsActivity extends ActionBarActivity {
 
@@ -23,9 +25,16 @@ public class ContentsActivity extends ActionBarActivity {
     private Context mContext;
     private ContentsHandler mContentsHandler = new ContentsHandler(){
         @Override
+        public void onResult(List<ChapterUrl> chapterUrls) {
+
+        }
+
+        @Override
         public void onFinish() {
             mProgressDialog.dismiss();
         }
+
+
     };
 
     @Override
@@ -33,7 +42,7 @@ public class ContentsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         mContext = this;
         mHttpProxy = HttpProxy.getInstance(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_contents);
         mActionBar = getSupportActionBar();
         mActionBar.setTitle(R.string.app_title);
         mProgressDialog = new ProgressDialog(this);
