@@ -13,6 +13,7 @@
     <string name="about_blog">博客：http://blog.csdn.net/maosidiaoxian</string>
     <string name="about_email">Email: androider@githang.com</string>
     <string name="about_qq_group">Gradle 中文用户组：109752483</string>
-    <string name="about_translation">关于翻译：\n 本文档由 Gradle 中文用户组的成员共同翻译。\n由于翻译人少，进度较慢，其他章节敬请期待。</string>
+    <string name="about_translation">有关翻译：\n 本文档由 Gradle 中文用户组的成员共同翻译。\n由于翻译人少，进度较慢，其他章节敬请期待。</string>
+    <string name="about_help">帮助：\n本程序对加载过的内容都会缓存到本地，点击右上角的刷新按钮可以强制重新请求以刷新内容。</string>
 
 </resources>

@@ -1,10 +1,13 @@
 package com.githang.gradledoc.chapter;
 
+import android.util.Log;
+
 import com.githang.gradledoc.datasource.AbstractResponse;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 /**
  * User: Geek_Soledad(msdx.android@qq.com)
@@ -19,8 +22,12 @@ public abstract class ChapterHandler implements AbstractResponse {
         Element chapter = doc.select("div.chapter").first();
         String title = chapter.select("div.titlepage").select("h1").text();
         chapter.removeClass("titlepage");
+        Elements preElems = chapter.select("pre");
+        for(Element elem : preElems) {
+            elem.html(elem.html().replaceAll("\n", "<br/>").replaceAll(" ", "&nbsp;"));
+        }
 
-        onResult(title, chapter.html().replaceAll("<pre", "<code").replaceAll("</pre", "</code"));
+        onResult(title, chapter.html());
     }
 
     public abstract void onResult(String title, String doc);

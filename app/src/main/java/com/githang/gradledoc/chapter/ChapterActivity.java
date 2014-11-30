@@ -38,7 +38,7 @@ public class ChapterActivity extends ActionBarActivity {
     private ChapterHandler mChapterHandler = new ChapterHandler() {
         @Override
         public void onResult(String title, String doc) {
-            mDocView.setText(Html.fromHtml(doc, new URLImageParser(mDocView), null));
+            mDocView.setText(Html.fromHtml(doc, new URLImageParser(mDocView), new ExtendedTagHandler()));
         }
 
         @Override
@@ -117,26 +117,21 @@ public class ChapterActivity extends ActionBarActivity {
     @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart( LOG_TAG );
+        MobclickAgent.onPageStart(LOG_TAG);
         MobclickAgent.onResume(mContext);
     }
 
 
     public class URLImageParser implements Html.ImageGetter {
         TextView mTextView;
-        private Drawable mDefaultDrawable;
 
         public URLImageParser(TextView textView) {
             this.mTextView = textView;
-            mDefaultDrawable = getResources().getDrawable(R.drawable.ic_picture);
         }
 
         @Override
         public Drawable getDrawable(String source) {
             final URLDrawable urlDrawable = new URLDrawable();
-            urlDrawable.drawable = mDefaultDrawable;
-            urlDrawable.setBounds(0, 0, urlDrawable.drawable.getIntrinsicWidth(),
-                    urlDrawable.drawable.getIntrinsicHeight());
             Log.d("ChapterActivity", Consts.BASE_URL + source);
             ImageLoader.getInstance().loadImage(Consts.BASE_URL + source, new SimpleImageLoadingListener() {
                 @Override
@@ -149,7 +144,6 @@ public class ChapterActivity extends ActionBarActivity {
                     mTextView.postInvalidate();
                 }
             });
-//            urlDrawable.drawable = new BitmapDrawable(null, ImageLoader.getInstance().loadImageSync(Consts.BASE_URL + source));
             return urlDrawable;
         }
     }
