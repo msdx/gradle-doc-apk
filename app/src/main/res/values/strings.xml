@@ -2,12 +2,14 @@
 <resources>
 
     <string name="app_name">GradleDoc</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="app_title">Gradle 用户指南 1.12</string>
     <string name="action_about">关于</string>
     <string name="action_refresh">刷新</string>
-    <string name="refreshing">正在刷新</string>
+    <string name="loading">正在加载</string>
     <string name="title_activity_chapter">Chapter</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="about_author">作者：Geek_Soledad</string>
+    <string name="about_weibo">weibo: @Geek_Soledad</string>
+    <string name="about_blog">博客：http://blog.csdn.net/maosidiaoxian</string>
 
 </resources>

@@ -8,15 +8,15 @@ package com.githang.gradledoc.contents;
  * FIXME
  */
 public class ChapterUrl {
-    private String chapter;
+    private String title;
     private String url;
 
-    public String getChapter() {
-        return chapter;
+    public String getTitle() {
+        return title;
     }
 
-    public void setChapter(String chapter) {
-        this.chapter = chapter;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getUrl() {
@@ -29,6 +29,6 @@ public class ChapterUrl {
 
     @Override
     public String toString() {
-        return chapter;
+        return title;
     }
 }

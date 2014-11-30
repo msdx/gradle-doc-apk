@@ -3,22 +3,29 @@ package com.githang.gradledoc.contents;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.githang.gradledoc.Consts;
 import com.githang.gradledoc.R;
+import com.githang.gradledoc.about.AboutActivity;
+import com.githang.gradledoc.chapter.ChapterActivity;
 import com.githang.gradledoc.datasource.HttpProxy;
 
 import java.util.List;
 
 
+/**
+ * 目录。
+ */
 public class ContentsActivity extends ActionBarActivity {
 
     private ActionBar mActionBar;
@@ -51,11 +58,21 @@ public class ContentsActivity extends ActionBarActivity {
         mListView = (ListView) findViewById(R.id.contents);
         mListView.addHeaderView(new View(this));
         mListView.addFooterView(new View(this));
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ChapterUrl chapterUrl = (ChapterUrl) parent.getAdapter().getItem(position);
+                Intent intent = new Intent(mContext, ChapterActivity.class);
+                intent.putExtra(Consts.TITLE, chapterUrl.getTitle());
+                intent.putExtra(Consts.URL, Consts.BASE_URL + chapterUrl.getUrl());
+                startActivity(intent);
+            }
+        });
         mActionBar = getSupportActionBar();
         mActionBar.setTitle(R.string.app_title);
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setCancelable(true);
-        mProgressDialog.setMessage(getString(R.string.refreshing));
+        mProgressDialog.setMessage(getString(R.string.loading));
         mProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
@@ -67,6 +84,7 @@ public class ContentsActivity extends ActionBarActivity {
     }
 
     private void requestContents() {
+        mProgressDialog.show();
         HttpProxy.getInstance(this).requestUrl(this, Consts.USER_GUIDE, mContentsHandler);
     }
 
@@ -92,6 +110,7 @@ public class ContentsActivity extends ActionBarActivity {
                 mHttpProxy.forceRequestUrl(mContext, Consts.USER_GUIDE, mContentsHandler);
                 return true;
             case R.id.action_about:
+                startActivity(new Intent(mContext, AboutActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

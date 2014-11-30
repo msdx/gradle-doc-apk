@@ -20,10 +20,10 @@ public abstract class ChapterHandler implements AbstractResponse {
         String title = chapter.select("div.titlepage").select("h1").text();
         chapter.removeClass("titlepage");
 
-        onResult(title, chapter.html());
+        onResult(title, chapter.html().replaceAll("<pre", "<code").replaceAll("</pre", "</code"));
     }
 
-    public abstract void onResult(String title, String content);
+    public abstract void onResult(String title, String doc);
 
     @Override
     public void onFailure(String response, Throwable e) {

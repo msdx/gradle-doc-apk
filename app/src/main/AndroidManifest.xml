@@ -3,11 +3,13 @@
     package="com.githang.gradledoc" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
+        android:name=".GradleApplication"
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.githang.gradledoc.contents.ContentsActivity"
@@ -19,8 +21,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".chapter.ChapterActivity"
+            android:name="com.githang.gradledoc.chapter.ChapterActivity"
             android:label="@string/title_activity_chapter" >
+        </activity>
+        <activity
+            android:name="com.githang.gradledoc.about.AboutActivity"
+            android:label="@string/title_activity_about" >
         </activity>
     </application>
 

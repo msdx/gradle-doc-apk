@@ -36,7 +36,7 @@ public class HttpDBCache extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_RESPONSE);
-//        db.execSQL(CREATE_RESPONSE_INDEX);
+        db.execSQL(CREATE_RESPONSE_INDEX);
 //        db.execSQL(CRAETE_CONFIG);
     }
 
