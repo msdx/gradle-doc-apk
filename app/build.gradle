@@ -16,10 +16,20 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+    signingConfigs {
+        myConfig {
+            storeFile file("../../githang.jks")
+            storePassword "GeekHang"
+            keyAlias "gradledoc"
+            keyPassword "GitGradle"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig  signingConfigs.myConfig
         }
     }
 
