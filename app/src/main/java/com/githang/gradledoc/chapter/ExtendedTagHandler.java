@@ -18,7 +18,7 @@ public class ExtendedTagHandler implements Html.TagHandler {
     @Override
     public void handleTag(boolean opening, String tag, Editable output, XMLReader xmlReader) {
         if (tag.equals("li")) {
-           // TODO 处理列表标签
+            // TODO 处理列表标签
         } else if (tag.equals("pre")) {
             handlerPre(output);
         } else if (tag.equals("tr")) {

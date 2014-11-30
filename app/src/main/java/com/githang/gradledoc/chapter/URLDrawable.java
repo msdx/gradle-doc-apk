@@ -11,15 +11,11 @@ import android.graphics.drawable.BitmapDrawable;
  * FIXME
  */
 public class URLDrawable extends BitmapDrawable {
-//    protected Drawable drawable;
     protected Bitmap bitmap;
 
     @Override
     public void draw(Canvas canvas) {
-//        if (drawable != null) {
-//            drawable.draw(canvas);
-//        }
-        if(bitmap != null) {
+        if (bitmap != null) {
             canvas.drawBitmap(bitmap, 0, 0, getPaint());
         }
 
