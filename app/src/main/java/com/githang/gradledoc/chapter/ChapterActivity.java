@@ -137,11 +137,14 @@ public class ChapterActivity extends ActionBarActivity {
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                     BitmapDrawable drawable = new BitmapDrawable(null, loadedImage);
-                    drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
-                            drawable.getIntrinsicHeight());
+                    int width = mTextView.getMeasuredWidth()
+                            - mTextView.getPaddingLeft() - mTextView.getPaddingRight();
+                    int height = (int) ((float)width / drawable.getIntrinsicWidth()
+                                                * drawable.getIntrinsicHeight());
                     urlDrawable.drawable = drawable;
-                    mTextView.requestLayout();
-                    mTextView.postInvalidate();
+                    urlDrawable.setBounds(0, 0, width, height);
+                    mTextView.invalidate();
+                    mTextView.setText(mTextView.getText());
                 }
             });
             return urlDrawable;
