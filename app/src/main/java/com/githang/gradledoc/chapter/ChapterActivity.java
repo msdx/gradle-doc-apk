@@ -136,13 +136,8 @@ public class ChapterActivity extends ActionBarActivity {
             ImageLoader.getInstance().loadImage(Consts.BASE_URL + source, new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                    BitmapDrawable drawable = new BitmapDrawable(null, loadedImage);
-                    int width = mTextView.getMeasuredWidth()
-                            - mTextView.getPaddingLeft() - mTextView.getPaddingRight();
-                    int height = (int) ((float)width / drawable.getIntrinsicWidth()
-                                                * drawable.getIntrinsicHeight());
-                    urlDrawable.drawable = drawable;
-                    urlDrawable.setBounds(0, 0, width, height);
+                    urlDrawable.bitmap = loadedImage;
+                    urlDrawable.setBounds(0, 0, loadedImage.getWidth(), loadedImage.getHeight());
                     mTextView.invalidate();
                     mTextView.setText(mTextView.getText());
                 }

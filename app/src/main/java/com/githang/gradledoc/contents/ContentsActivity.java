@@ -85,8 +85,8 @@ public class ContentsActivity extends ActionBarActivity {
 
         requestContents();
 
-        UmengUpdateAgent.setUpdateAutoPopup(false);
-        UmengUpdateAgent.setUpdateOnlyWifi(false);
+        UmengUpdateAgent.setUpdateAutoPopup(true);
+        UmengUpdateAgent.setUpdateOnlyWifi(true);
         UmengUpdateAgent.update(this);
     }
 

@@ -8,8 +8,8 @@ android {
         applicationId "com.githang.gradledoc"
         minSdkVersion 7
         targetSdkVersion 21
-        versionCode 3
-        versionName "0.1.2"
+        versionCode 4
+        versionName "0.1.3"
     }
 
     compileOptions {

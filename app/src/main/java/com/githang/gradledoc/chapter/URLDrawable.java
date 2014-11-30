@@ -1,8 +1,8 @@
 package com.githang.gradledoc.chapter;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 
 /**
  * User: Geek_Soledad(msdx.android@qq.com)
@@ -11,12 +11,19 @@ import android.graphics.drawable.Drawable;
  * FIXME
  */
 public class URLDrawable extends BitmapDrawable {
-    protected Drawable drawable;
+//    protected Drawable drawable;
+    protected Bitmap bitmap;
 
     @Override
     public void draw(Canvas canvas) {
-        if (drawable != null) {
-            drawable.draw(canvas);
+//        if (drawable != null) {
+//            drawable.draw(canvas);
+//        }
+        if(bitmap != null) {
+            canvas.drawBitmap(bitmap, 0, 0, getPaint());
         }
+
     }
+
+
 }
