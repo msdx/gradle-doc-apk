@@ -21,8 +21,10 @@ import com.githang.gradledoc.R;
 import com.githang.gradledoc.datasource.HttpProxy;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+import com.umeng.analytics.MobclickAgent;
 
 public class ChapterActivity extends ActionBarActivity {
+    private static final String LOG_TAG = ChapterActivity.class.getSimpleName();
     private String title;
     private String url;
 
@@ -104,6 +106,21 @@ public class ChapterActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(LOG_TAG);
+        MobclickAgent.onPause(mContext);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart( LOG_TAG );
+        MobclickAgent.onResume(mContext);
+    }
+
 
     public class URLImageParser implements Html.ImageGetter {
         TextView mTextView;

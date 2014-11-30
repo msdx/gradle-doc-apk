@@ -19,6 +19,8 @@ import com.githang.gradledoc.R;
 import com.githang.gradledoc.about.AboutActivity;
 import com.githang.gradledoc.chapter.ChapterActivity;
 import com.githang.gradledoc.datasource.HttpProxy;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.update.UmengUpdateAgent;
 
 import java.util.List;
 
@@ -27,6 +29,7 @@ import java.util.List;
  * 目录。
  */
 public class ContentsActivity extends ActionBarActivity {
+    private static final String LOG_TAG = ContentsActivity.class.getSimpleName();
 
     private ActionBar mActionBar;
     private ProgressDialog mProgressDialog;
@@ -81,6 +84,10 @@ public class ContentsActivity extends ActionBarActivity {
         });
 
         requestContents();
+
+        UmengUpdateAgent.setUpdateAutoPopup(false);
+        UmengUpdateAgent.setUpdateOnlyWifi(false);
+        UmengUpdateAgent.update(this);
     }
 
     private void requestContents() {
@@ -116,5 +123,20 @@ public class ContentsActivity extends ActionBarActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(LOG_TAG);
+        MobclickAgent.onPause(mContext);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart( LOG_TAG );
+        MobclickAgent.onResume(mContext);
     }
 }

@@ -1,1 +1,1 @@
-include ':app'//, ':libraries:htmltextview'
+include ':app', ':libraries:umeng'//, ':libraries:htmltextview'
