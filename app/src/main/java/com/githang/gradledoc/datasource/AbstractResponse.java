@@ -8,6 +8,8 @@ package com.githang.gradledoc.datasource;
  */
 public interface AbstractResponse {
     public void onSuccess(String response);
+
     public void onFailure(String response, Throwable e);
+
     public void onFinish();
 }

@@ -32,6 +32,10 @@ public class ExtendedTagHandler implements Html.TagHandler {
             }
         } else if (tag.equals("pre")) {
             handlerPre(output);
+        } else if (tag.equals("tr")) {
+            output.append("\n");
+        } else if (tag.equals("td")) {
+            output.append("\t");
         }
     }
 

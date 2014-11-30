@@ -21,7 +21,7 @@ public class HttpProxy {
     private AsyncHttpClient mHttpClient;
 
     public static synchronized HttpProxy getInstance(Context context) {
-        if(instance == null) {
+        if (instance == null) {
             instance = new HttpProxy(context);
         }
         return instance;
@@ -35,6 +35,7 @@ public class HttpProxy {
 
     /**
      * 强制从互联网上请求
+     *
      * @param context
      * @param url
      * @param response
@@ -62,13 +63,14 @@ public class HttpProxy {
 
     /**
      * 请求页面。
+     *
      * @param context
      * @param url
      * @param response
      */
     public void requestUrl(Context context, String url, AbstractResponse response) {
         String result = mCache.queryResponse(url);
-        if(result != null) {
+        if (result != null) {
             response.onSuccess(result);
             response.onFinish();
         } else {
@@ -78,6 +80,7 @@ public class HttpProxy {
 
     /**
      * 取消请求
+     *
      * @param context
      */
     public void cancelRequests(Context context) {

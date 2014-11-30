@@ -27,11 +27,12 @@ public abstract class ChapterHandler implements AbstractResponse {
 
     /**
      * 处理代码显示问题.
+     *
      * @param chapter 章节内容的html元素。
      */
     private void handlerPreTag(Element chapter) {
         Elements preElems = chapter.select("pre");
-        for(Element elem : preElems) {
+        for (Element elem : preElems) {
             elem.html(elem.html().replaceAll("\n", "<br/>").replaceAll(" ", "&nbsp;"));
         }
     }

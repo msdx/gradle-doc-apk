@@ -47,15 +47,16 @@ public class HttpDBCache extends SQLiteOpenHelper {
 
     /**
      * 查询缓存的响应
+     *
      * @param url
      * @return
      */
     public String queryResponse(String url) {
-        SQLiteDatabase db =getReadableDatabase();
+        SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_RESPONSE, new String[]{COL_ID, COL_URL, COL_RESPONSE},
                 COL_URL + "=?", new String[]{url}, null, null, null);
         String response = null;
-        if(cursor.moveToNext()) {
+        if (cursor.moveToNext()) {
             response = cursor.getString(cursor.getColumnIndex(COL_RESPONSE));
         }
         cursor.close();
@@ -65,6 +66,7 @@ public class HttpDBCache extends SQLiteOpenHelper {
 
     /**
      * 缓存请求。
+     *
      * @param url
      * @param response
      */

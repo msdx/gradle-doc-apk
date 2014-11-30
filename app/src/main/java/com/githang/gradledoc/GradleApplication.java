@@ -24,6 +24,7 @@ public class GradleApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        MobclickAgent.setDebugMode(false);
         MobclickAgent.openActivityDurationTrack(false);
         MobclickAgent.updateOnlineConfig(this);
 

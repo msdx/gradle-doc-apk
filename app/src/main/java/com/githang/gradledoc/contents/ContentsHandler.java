@@ -16,14 +16,15 @@ import java.util.List;
  * Date: 2014-11-29
  * Time: 13:03
  */
-public abstract class ContentsHandler implements AbstractResponse{
+public abstract class ContentsHandler implements AbstractResponse {
     private static final String LOG_TAG = ContentsHandler.class.getSimpleName();
+
     @Override
     public void onSuccess(String response) {
         Document doc = Jsoup.parse(response);
         Elements elements = doc.select("span.chapter");
         List<ChapterUrl> chapterUrls = new ArrayList<>();
-        for(Element elem : elements) {
+        for (Element elem : elements) {
             ChapterUrl url = new ChapterUrl();
             url.setUrl(elem.select("a[href]").attr("href"));
             url.setTitle(elem.text());

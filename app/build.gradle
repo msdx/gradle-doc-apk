@@ -8,8 +8,8 @@ android {
         applicationId "com.githang.gradledoc"
         minSdkVersion 7
         targetSdkVersion 21
-        versionCode 2
-        versionName "0.1.1"
+        versionCode 3
+        versionName "0.1.2"
     }
 
     compileOptions {
@@ -34,9 +34,11 @@ android {
     }
 
     android.applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            def file = output.outputFile
-            output.outputFile = new File(file.parent, "Gradle 用户指南-" + defaultConfig.versionName + ".apk")
+        if(variant.buildType.name == 'release') {
+            variant.outputs.each { output ->
+                def file = output.outputFile
+                output.outputFile = new File(file.parent, "Gradle User Guide-" + defaultConfig.versionName + ".apk")
+            }
         }
     }
 

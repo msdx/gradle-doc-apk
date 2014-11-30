@@ -21,7 +21,7 @@ public class AboutActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home) {
+        if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
         }
@@ -39,7 +39,7 @@ public class AboutActivity extends ActionBarActivity {
     @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart( LOG_TAG );
+        MobclickAgent.onPageStart(LOG_TAG);
         MobclickAgent.onResume(this);
     }
 }

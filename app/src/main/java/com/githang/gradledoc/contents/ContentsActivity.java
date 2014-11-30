@@ -37,7 +37,7 @@ public class ContentsActivity extends ActionBarActivity {
 
     private HttpProxy mHttpProxy;
     private Context mContext;
-    private ContentsHandler mContentsHandler = new ContentsHandler(){
+    private ContentsHandler mContentsHandler = new ContentsHandler() {
         @Override
         public void onResult(List<ChapterUrl> chapterUrls) {
             ArrayAdapter<ChapterUrl> adapter = new ArrayAdapter<ChapterUrl>(mContext, R.layout.item_contents, chapterUrls);
@@ -136,7 +136,7 @@ public class ContentsActivity extends ActionBarActivity {
     @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart( LOG_TAG );
+        MobclickAgent.onPageStart(LOG_TAG);
         MobclickAgent.onResume(mContext);
     }
 }
