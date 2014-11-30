@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">GradleDoc</string>
+    <string name="app_name">Gradle 双语文档</string>
     <string name="app_title">Gradle 用户指南 1.12</string>
     <string name="action_about">关于</string>
     <string name="action_refresh">刷新</string>
@@ -11,5 +11,8 @@
     <string name="about_author">作者：Geek_Soledad</string>
     <string name="about_weibo">weibo: @Geek_Soledad</string>
     <string name="about_blog">博客：http://blog.csdn.net/maosidiaoxian</string>
+    <string name="about_email">Email: androider@githang.com</string>
+    <string name="about_qq_group">Gradle 中文用户组：109752483</string>
+    <string name="about_translation">关于翻译：\n 本文档由 Gradle 中文用户组的成员共同翻译。\n由于翻译人少，进度较慢，其他章节敬请期待。</string>
 
 </resources>
