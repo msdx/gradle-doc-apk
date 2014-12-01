@@ -97,7 +97,7 @@ public class ChapterActivity extends ActionBarActivity {
 
         if (id == R.id.action_refresh) {
             mProgressDialog.show();
-            mHttpProxy.forceRequestUrl(mContext, Consts.BASE_URL + url, mChapterHandler);
+            mHttpProxy.forceRequestUrl(mContext, url, mChapterHandler);
             return true;
         } else if (id == android.R.id.home) {
             finish();

@@ -41,8 +41,7 @@ public class HttpProxy {
      * @param response
      */
     public void forceRequestUrl(Context context, final String url, final AbstractResponse response) {
-        mHttpClient.cancelRequests(context, true);
-        mHttpClient.get(url, new TextHttpResponseHandler() {
+        mHttpClient.get(context, url, new TextHttpResponseHandler() {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 response.onFailure(responseString, throwable);
