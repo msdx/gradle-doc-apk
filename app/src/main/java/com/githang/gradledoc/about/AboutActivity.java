@@ -1,8 +1,12 @@
 package com.githang.gradledoc.about;
 
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.githang.gradledoc.R;
 import com.umeng.analytics.MobclickAgent;
@@ -10,13 +14,28 @@ import com.umeng.analytics.MobclickAgent;
 public class AboutActivity extends ActionBarActivity {
     private static final String LOG_TAG = AboutActivity.class.getSimpleName();
 
+    private TextView mVersion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        mVersion = (TextView) findViewById(R.id.about_version);
+        setVersion();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.action_about));
+    }
+
+    private void setVersion() {
+        ApplicationInfo info = this.getApplicationInfo();
+        mVersion.setText("版本: ");
+        try {
+            PackageInfo packageInfo= getPackageManager().getPackageInfo(info.packageName, 0);
+            mVersion.append(" V");
+            mVersion.append(packageInfo.versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
