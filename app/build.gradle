@@ -8,8 +8,10 @@ android {
         applicationId "com.githang.gradledoc"
         minSdkVersion 7
         targetSdkVersion 21
-        versionCode 5
-        versionName "0.1.4"
+        versionCode 6
+        versionName "0.1.5"
+
+        manifestPlaceholders = [ CHANNEL_NAME:"Unspecified"]
     }
 
     compileOptions {
@@ -37,9 +39,23 @@ android {
         if(variant.buildType.name == 'release') {
             variant.outputs.each { output ->
                 def file = output.outputFile
-                output.outputFile = new File(file.parent, "Gradle User Guide-" + defaultConfig.versionName + ".apk")
+                output.outputFile = new File(file.parent, "GradleUser Guide-"
+                        + defaultConfig.versionName + "-" + variant.name + ".apk")
             }
         }
+    }
+
+    productFlavors {
+        qqgroup {
+            manifestPlaceholders = [ CHANNEL_NAME:"QQGROUP"]
+        }
+        umeng {
+            manifestPlaceholders = [ activityLabel:"UMENG" ]
+        }
+        wandoujia {
+            manifestPlaceholders = [ activityLabel:"WANDOUJIA" ]
+        }
+
     }
 
     lintOptions {

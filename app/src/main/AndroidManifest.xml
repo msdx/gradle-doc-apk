@@ -28,6 +28,9 @@
             android:name="com.githang.gradledoc.about.AboutActivity"
             android:label="@string/title_activity_about" >
         </activity>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${CHANNEL_NAME}" />
     </application>
 
 </manifest>
