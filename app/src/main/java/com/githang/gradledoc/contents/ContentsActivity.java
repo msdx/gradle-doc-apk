@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.githang.gradledoc.Consts;
 import com.githang.gradledoc.R;
@@ -49,6 +50,10 @@ public class ContentsActivity extends ActionBarActivity {
             mProgressDialog.dismiss();
         }
 
+        @Override
+        public void onFailure(String response, Throwable e) {
+            Toast.makeText(mContext, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
 
     };
 

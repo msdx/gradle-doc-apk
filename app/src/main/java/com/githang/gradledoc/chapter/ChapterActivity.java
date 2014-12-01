@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.githang.gradledoc.Consts;
 import com.githang.gradledoc.R;
@@ -38,6 +39,11 @@ public class ChapterActivity extends ActionBarActivity {
         @Override
         public void onResult(String title, String doc) {
             mDocView.setText(Html.fromHtml(doc, new URLImageParser(mDocView), new ExtendedTagHandler()));
+        }
+
+        @Override
+        public void onFailure(String response, Throwable e) {
+            Toast.makeText(mContext, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         @Override
