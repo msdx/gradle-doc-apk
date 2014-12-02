@@ -2,9 +2,10 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="com.githang.gradledoc.chapter.ChapterActivity">
-    <item android:id="@+id/action_refresh"
-          android:orderInCategory="1"
-          android:icon="@drawable/ic_refresh"
-          app:showAsAction="ifRoom"
-          android:title="@string/action_refresh"/>
+    <item
+        android:id="@+id/action_refresh"
+        android:orderInCategory="1"
+        android:icon="@drawable/ic_refresh"
+        app:showAsAction="ifRoom"
+        android:title="@string/action_refresh"/>
 </menu>
