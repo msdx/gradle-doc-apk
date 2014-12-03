@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
@@ -18,14 +16,14 @@ import android.widget.Toast;
 
 import com.githang.gradledoc.Consts;
 import com.githang.gradledoc.R;
+import com.githang.gradledoc.common.BaseActivity;
 import com.githang.gradledoc.datasource.HttpProxy;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.umeng.analytics.MobclickAgent;
 
-public class ChapterActivity extends ActionBarActivity {
+public class ChapterActivity extends BaseActivity {
     private static final String LOG_TAG = ChapterActivity.class.getSimpleName();
-    private String title;
     private String url;
 
     private HttpProxy mHttpProxy;
@@ -60,11 +58,8 @@ public class ChapterActivity extends ActionBarActivity {
         mHttpProxy = HttpProxy.getInstance(this);
 
         Bundle bundle = getIntent().getExtras();
-        title = bundle.getString(Consts.TITLE);
         url = bundle.getString(Consts.URL);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(title);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(bundle.getString(Consts.TITLE));
         initViews();
 
         requestContents();
@@ -92,7 +87,7 @@ public class ChapterActivity extends ActionBarActivity {
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_chapter, menu);
         return true;
     }
@@ -105,8 +100,6 @@ public class ChapterActivity extends ActionBarActivity {
             mProgressDialog.show();
             mHttpProxy.forceRequestUrl(mContext, url, mChapterHandler);
             return true;
-        } else if (id == android.R.id.home) {
-            finish();
         }
 
         return super.onOptionsItemSelected(item);

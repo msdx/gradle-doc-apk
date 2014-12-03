@@ -2,12 +2,11 @@
 <resources>
 
     <string name="app_name">Gradle 用户指南</string>
-    <string name="app_title">Gradle 用户指南 1.12</string>
     <string name="action_about">关于</string>
     <string name="action_refresh">刷新</string>
     <string name="loading">正在加载</string>
     <string name="title_activity_chapter">Chapter</string>
-    <string name="title_activity_about">AboutActivity</string>
+    <string name="title_activity_about">关于</string>
     <string name="about_author">作者：Geek_Soledad</string>
     <string name="about_weibo">weibo: @Geek_Soledad</string>
     <string name="about_blog">博客：http://blog.csdn.net/maosidiaoxian</string>
@@ -21,5 +20,6 @@
     <string name="about_contributors">翻译贡献者：\n
         (截至2014-12-02, Github上该项目的统计)\n
     @pkaq, @llitfkitfk, @msdx, @rover12421</string>
+    <string name="title_activity_process">翻译进度</string>
 
 </resources>

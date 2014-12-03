@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,9 +15,11 @@ import android.widget.Toast;
 
 import com.githang.gradledoc.Consts;
 import com.githang.gradledoc.R;
-import com.githang.gradledoc.about.AboutActivity;
 import com.githang.gradledoc.chapter.ChapterActivity;
+import com.githang.gradledoc.common.BaseActivity;
 import com.githang.gradledoc.datasource.HttpProxy;
+import com.githang.gradledoc.others.AboutActivity;
+import com.githang.gradledoc.process.ProcessActivity;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 
@@ -29,10 +29,9 @@ import java.util.List;
 /**
  * 目录。
  */
-public class ContentsActivity extends ActionBarActivity {
+public class ContentsActivity extends BaseActivity {
     private static final String LOG_TAG = ContentsActivity.class.getSimpleName();
 
-    private ActionBar mActionBar;
     private ProgressDialog mProgressDialog;
     private ListView mListView;
 
@@ -76,8 +75,6 @@ public class ContentsActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
-        mActionBar = getSupportActionBar();
-        mActionBar.setTitle(R.string.app_title);
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setCancelable(true);
         mProgressDialog.setMessage(getString(R.string.loading));
@@ -99,7 +96,6 @@ public class ContentsActivity extends ActionBarActivity {
         mProgressDialog.show();
         HttpProxy.getInstance(this).requestUrl(this, Consts.USER_GUIDE, mContentsHandler);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -124,6 +120,8 @@ public class ContentsActivity extends ActionBarActivity {
             case R.id.action_about:
                 startActivity(new Intent(mContext, AboutActivity.class));
                 return true;
+            case R.id.action_process:
+                startActivity(new Intent(mContext, ProcessActivity.class));
             default:
                 return super.onOptionsItemSelected(item);
         }

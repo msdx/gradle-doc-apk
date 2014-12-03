@@ -1,17 +1,16 @@
-package com.githang.gradledoc.about;
+package com.githang.gradledoc.others;
 
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.githang.gradledoc.R;
+import com.githang.gradledoc.common.BaseActivity;
 import com.umeng.analytics.MobclickAgent;
 
-public class AboutActivity extends ActionBarActivity {
+public class AboutActivity extends BaseActivity {
     private static final String LOG_TAG = AboutActivity.class.getSimpleName();
 
     private TextView mVersion;
@@ -21,9 +20,6 @@ public class AboutActivity extends ActionBarActivity {
         setContentView(R.layout.activity_about);
         mVersion = (TextView) findViewById(R.id.about_version);
         setVersion();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getString(R.string.action_about));
     }
 
     private void setVersion() {
@@ -36,15 +32,6 @@ public class AboutActivity extends ActionBarActivity {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
 
