@@ -25,69 +25,47 @@
                 android:src="@drawable/ic_launcher"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:padding="8dp"
                 android:text="@string/app_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                style="@style/about_text"/>
 
             <TextView
                 android:id="@+id/about_version"
-                android:padding="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                style="@style/about_text"/>
 
             <TextView
-                android:padding="8dp"
                 android:text="@string/about_author"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                style="@style/about_text"/>
 
             <TextView
-                android:padding="8dp"
                 android:text="@string/about_weibo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                style="@style/about_text"/>
 
             <TextView
-                android:padding="8dp"
                 android:text="@string/about_blog"
-                android:autoLink="web"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                style="@style/about_text"/>
 
             <TextView
-                android:padding="8dp"
                 android:text="@string/about_email"
-                android:autoLink="email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                style="@style/about_text"/>
 
             <TextView
-                android:padding="8dp"
                 android:text="@string/about_qq_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                style="@style/about_text"/>
 
             <TextView
-                android:padding="8dp"
                 android:text="@string/about_translation"
-                android:gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                style="@style/about_text"/>
 
             <TextView
-                android:padding="8dp"
                 android:text="@string/about_help"
-                android:gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                style="@style/about_text"/>
 
             <TextView
-                android:padding="8dp"
                 android:text="@string/about_contributors"
-                android:gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                style="@style/about_text"/>
+            <TextView
+                android:text="@string/about_icon"
+                style="@style/about_text"/>
 
         </LinearLayout>
     </ScrollView>

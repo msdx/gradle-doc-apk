@@ -21,6 +21,7 @@
     <string name="about_contributors">翻译贡献者：\n
         (截至2014-12-02, Github上该项目的统计)\n
     @pkaq, @llitfkitfk, @msdx, @rover12421</string>
+    <string name="about_icon">自0.2版本，图标由群友 @J | 文 提供</string>
     <string name="title_activity_process">翻译进度</string>
 
 </resources>
