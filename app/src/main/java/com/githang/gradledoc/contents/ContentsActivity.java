@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +17,6 @@ import android.widget.Toast;
 import com.githang.gradledoc.Consts;
 import com.githang.gradledoc.R;
 import com.githang.gradledoc.chapter.ChapterActivity;
-import com.githang.gradledoc.common.BaseActivity;
 import com.githang.gradledoc.datasource.HttpProxy;
 import com.githang.gradledoc.others.AboutActivity;
 import com.githang.gradledoc.process.ProcessActivity;
@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * 目录。
  */
-public class ContentsActivity extends BaseActivity {
+public class ContentsActivity extends ActionBarActivity {
     private static final String LOG_TAG = ContentsActivity.class.getSimpleName();
 
     private ProgressDialog mProgressDialog;
@@ -61,6 +61,7 @@ public class ContentsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mContext = this;
         mHttpProxy = HttpProxy.getInstance(this);
+        getSupportActionBar().setTitle(R.string.app_title);
         setContentView(R.layout.activity_contents);
         mListView = (ListView) findViewById(R.id.contents);
         mListView.addHeaderView(new View(this));

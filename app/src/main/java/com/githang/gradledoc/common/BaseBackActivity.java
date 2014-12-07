@@ -9,7 +9,7 @@ import android.view.MenuItem;
  * Date: 2014-12-03
  * Time: 21:59
  */
-public class BaseActivity extends ActionBarActivity {
+public class BaseBackActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

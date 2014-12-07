@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">Gradle 用户指南</string>
+    <string name="app_title">Gradle 用户指南 1.12</string>
     <string name="action_about">关于</string>
     <string name="action_refresh">刷新</string>
     <string name="loading">正在加载</string>

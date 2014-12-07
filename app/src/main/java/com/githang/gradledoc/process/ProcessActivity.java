@@ -12,13 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.githang.gradledoc.R;
-import com.githang.gradledoc.common.BaseActivity;
+import com.githang.gradledoc.common.BaseBackActivity;
 import com.githang.gradledoc.common.BaseListAdapter;
 import com.githang.gradledoc.datasource.HttpProxy;
 
 import java.util.List;
 
-public class ProcessActivity extends BaseActivity {
+public class ProcessActivity extends BaseBackActivity {
     private static final String URL_PROCESS = "https://github.com/msdx/gradledoc/commits/1.12";
     private ProgressDialog mProgressDialog;
     private ListView mListView;

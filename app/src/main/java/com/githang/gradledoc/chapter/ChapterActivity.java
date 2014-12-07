@@ -16,13 +16,13 @@ import android.widget.Toast;
 
 import com.githang.gradledoc.Consts;
 import com.githang.gradledoc.R;
-import com.githang.gradledoc.common.BaseActivity;
+import com.githang.gradledoc.common.BaseBackActivity;
 import com.githang.gradledoc.datasource.HttpProxy;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.umeng.analytics.MobclickAgent;
 
-public class ChapterActivity extends BaseActivity {
+public class ChapterActivity extends BaseBackActivity {
     private static final String LOG_TAG = ChapterActivity.class.getSimpleName();
     private String url;
 

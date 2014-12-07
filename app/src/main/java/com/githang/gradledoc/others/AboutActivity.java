@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.githang.gradledoc.R;
-import com.githang.gradledoc.common.BaseActivity;
+import com.githang.gradledoc.common.BaseBackActivity;
 import com.umeng.analytics.MobclickAgent;
 
-public class AboutActivity extends BaseActivity {
+public class AboutActivity extends BaseBackActivity {
     private static final String LOG_TAG = AboutActivity.class.getSimpleName();
 
     private TextView mVersion;
