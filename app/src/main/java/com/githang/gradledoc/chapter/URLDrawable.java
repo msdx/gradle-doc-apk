@@ -2,6 +2,7 @@ package com.githang.gradledoc.chapter;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 
 /**
@@ -11,15 +12,18 @@ import android.graphics.drawable.BitmapDrawable;
  * FIXME
  */
 public class URLDrawable extends BitmapDrawable {
-    protected Bitmap bitmap;
+    protected Bitmap mBitmap;
+    protected Rect mSrc;
+
+    public void setBitmap(Bitmap bitmap) {
+        mBitmap = bitmap;
+        mSrc = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+    }
 
     @Override
     public void draw(Canvas canvas) {
-        if (bitmap != null) {
-            canvas.drawBitmap(bitmap, 0, 0, getPaint());
+        if (mBitmap != null) {
+            canvas.drawBitmap(mBitmap, mSrc, getBounds(), getPaint());
         }
-
     }
-
-
 }

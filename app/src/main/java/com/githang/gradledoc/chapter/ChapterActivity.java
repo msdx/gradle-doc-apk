@@ -134,8 +134,10 @@ public class ChapterActivity extends BaseBackActivity {
             ImageLoader.getInstance().loadImage(Consts.BASE_URL + source, new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                    urlDrawable.bitmap = loadedImage;
-                    urlDrawable.setBounds(0, 0, loadedImage.getWidth(), loadedImage.getHeight());
+                    urlDrawable.setBitmap(loadedImage);
+                    int width =  mTextView.getWidth() - 2 * mTextView.getTotalPaddingRight();
+                    int height = loadedImage.getHeight() * width / loadedImage.getWidth();
+                    urlDrawable.setBounds(0, 0, width, height);
                     mTextView.invalidate();
                     mTextView.setText(mTextView.getText());
                 }
