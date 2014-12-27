@@ -11,7 +11,7 @@ android {
         versionCode 8
         versionName "0.2"
 
-        manifestPlaceholders = [ CHANNEL_NAME:"Unspecified"]
+   //     manifestPlaceholders = [ CHANNEL_NAME:"Unspecified"]
     }
 
     compileOptions {
@@ -50,10 +50,10 @@ android {
             manifestPlaceholders = [ CHANNEL_NAME:"QQGROUP"]
         }
         umeng {
-            manifestPlaceholders = [ activityLabel:"UMENG" ]
+            manifestPlaceholders = [ CHANNEL_NAME:"UMENG" ]
         }
         wandoujia {
-            manifestPlaceholders = [ activityLabel:"WANDOUJIA" ]
+            manifestPlaceholders = [ CHANNEL_NAME:"WANDOUJIA" ]
         }
 
     }
