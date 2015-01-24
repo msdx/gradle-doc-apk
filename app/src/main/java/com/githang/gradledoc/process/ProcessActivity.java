@@ -69,7 +69,11 @@ public class ProcessActivity extends BaseBackActivity {
         });
 
         mProgressDialog.show();
-        HttpProxy.getInstance(this).requestUrl(this, URL_PROCESS, mProcessHandler);
+        boolean isCache = HttpProxy.getInstance(this).requestUrl(this, URL_PROCESS, mProcessHandler);
+        if(isCache) {
+            mProgressDialog.show();
+            HttpProxy.getInstance(this).forceRequestUrl(this, URL_PROCESS, mProcessHandler);
+        }
     }
 
     @Override

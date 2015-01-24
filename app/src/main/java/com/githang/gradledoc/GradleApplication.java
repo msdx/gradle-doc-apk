@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 
 import com.nostra13.universalimageloader.cache.disc.impl.ext.LruDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -17,7 +18,6 @@ import java.io.IOException;
  * User: Geek_Soledad(msdx.android@qq.com)
  * Date: 2014-11-29
  * Time: 23:47
- * FIXME
  */
 public class GradleApplication extends Application {
     @Override
@@ -33,7 +33,7 @@ public class GradleApplication extends Application {
                     .cacheOnDisk(true).bitmapConfig(Bitmap.Config.RGB_565).build();
             ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
                     .diskCache(new LruDiscCache(getCacheDir(),
-                            new HashCodeFileNameGenerator(), 10 * 1024 * 1024))
+                            new Md5FileNameGenerator(), 20 * 1024 * 1024))
                     .memoryCache(new LruMemoryCache(8 * 1024 * 1024))
                     .defaultDisplayImageOptions(options).build();
             ImageLoader.getInstance().init(config);

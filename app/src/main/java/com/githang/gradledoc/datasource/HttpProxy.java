@@ -66,14 +66,17 @@ public class HttpProxy {
      * @param context
      * @param url
      * @param response
+     * @return true 表示从缓存当中获取内容，false表示缓存当在没有内容，通过网络获取。
      */
-    public void requestUrl(Context context, String url, AbstractResponse response) {
+    public boolean requestUrl(Context context, String url, AbstractResponse response) {
         String result = mCache.queryResponse(url);
         if (result != null) {
             response.onSuccess(result);
             response.onFinish();
+            return true;
         } else {
             forceRequestUrl(context, url, response);
+            return false;
         }
     }
 
