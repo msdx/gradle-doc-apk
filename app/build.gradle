@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.githang.gradledoc"
-        minSdkVersion 7
-        targetSdkVersion 21
+        minSdkVersion 8
+        targetSdkVersion 22
         versionCode 8
         versionName "0.2"
 

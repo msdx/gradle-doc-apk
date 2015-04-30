@@ -1,5 +1,5 @@
 # Gradle用户指南
-Gradle UserGuide apk，支持 android 2.1以上。
+Gradle UserGuide apk，支持 android 2.2以上。
 
 Gradle用户指南，可以在地铁或路上随时查看Gradle双语文档。
 
