@@ -1,7 +1,6 @@
 package com.githang.gradledoc.common;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
 /**
@@ -9,7 +8,7 @@ import android.view.MenuItem;
  * Date: 2014-12-03
  * Time: 21:59
  */
-public class BaseBackActivity extends ActionBarActivity {
+public class BaseBackActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

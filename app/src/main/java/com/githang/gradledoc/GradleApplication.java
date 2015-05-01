@@ -4,7 +4,6 @@ import android.app.Application;
 import android.graphics.Bitmap;
 
 import com.nostra13.universalimageloader.cache.disc.impl.ext.LruDiscCache;
-import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -40,5 +39,6 @@ public class GradleApplication extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }
