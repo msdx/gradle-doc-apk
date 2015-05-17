@@ -47,5 +47,6 @@ public class GradleApplication extends Application {
         MobclickAgent.updateOnlineConfig(this);
 
         MobclickAgent.setCatchUncaughtExceptions(true);
+        MobclickAgent.reportError(this, "test");
     }
 }
