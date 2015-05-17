@@ -22,11 +22,11 @@ public class GradleApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        initUmeng();
+        initImageLoader();
+    }
 
-        MobclickAgent.setDebugMode(false);
-        MobclickAgent.openActivityDurationTrack(false);
-        MobclickAgent.updateOnlineConfig(this);
-
+    private void initImageLoader() {
         try {
             DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true)
                     .cacheOnDisk(true).bitmapConfig(Bitmap.Config.RGB_565).build();
@@ -39,6 +39,13 @@ public class GradleApplication extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    private void initUmeng() {
+        MobclickAgent.setDebugMode(BuildConfig.DEBUG);
+        MobclickAgent.openActivityDurationTrack(false);
+        MobclickAgent.updateOnlineConfig(this);
+
+        MobclickAgent.setCatchUncaughtExceptions(true);
     }
 }
