@@ -8,8 +8,8 @@ android {
         applicationId "com.githang.gradledoc"
         minSdkVersion 8
         targetSdkVersion 22
-        versionCode 8
-        versionName "0.2"
+        versionCode 9
+        versionName "0.2.1"
 
    //     manifestPlaceholders = [ CHANNEL_NAME:"Unspecified"]
     }
