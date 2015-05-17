@@ -19,6 +19,5 @@ public class BaseActivity extends ActionBarActivity {
         tintManager.setNavigationBarTintEnabled(true);
         // set a custom tint color for all system bars
         tintManager.setTintColor(ACTION_BAR_BG);
-        tintManager.setNavigationBarTintColor(ACTION_BAR_BG);
     }
 }
