@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+ext.keyPswd = hasProperty("keyPswd")? getProperty("keyPswd"):""
+
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
@@ -18,10 +20,10 @@ android {
     }
     signingConfigs {
         myConfig {
-            storeFile file("../../githang.jks")
-            storePassword "GeekHang"
-            keyAlias "gradledoc"
-            keyPassword "GitGradle"
+            storeFile file("../gradle.jks")
+            storePassword "Gradle"
+            keyAlias "Gradle"
+            keyPassword keyPswd
         }
     }
 

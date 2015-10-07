@@ -7,6 +7,8 @@ Gradle用户指南，可以在地铁或路上随时查看Gradle双语文档。
 
 应用下载地址：http://www.wandoujia.com/apps/com.githang.gradledoc
 
+由于原签名文件丢失（一脚把笔记本硬盘踹坏了= =！），发布新版时将使用新的签名，如果无法升级，请卸载重装。
+
 应用截图：
 
 ![Aaron Swartz](http://img.wdjimg.com/mms/screenshot/3/3e/6d146b2ec0b2eef14cbf282f6d4653e3_320_568.jpeg)
