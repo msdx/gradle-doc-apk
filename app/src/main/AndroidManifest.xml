@@ -32,9 +32,7 @@
                   android:label="@string/title_activity_process"
             >
         </activity>
-        <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="${CHANNEL_NAME}" />
+
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="547a80f6fd98c523b10017c1" />
