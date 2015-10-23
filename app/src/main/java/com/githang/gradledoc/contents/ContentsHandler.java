@@ -16,11 +16,9 @@ import java.util.List;
  * Date: 2014-11-29
  * Time: 13:03
  */
-public abstract class ContentsHandler implements AbstractResponse {
-    private static final String LOG_TAG = ContentsHandler.class.getSimpleName();
-
+public abstract class ContentsHandler extends AbstractResponse {
     @Override
-    public void onSuccess(String response) {
+    public void onUISuccess(String response) {
         Document doc = Jsoup.parse(response);
         Elements elements = doc.select("span.chapter");
         List<ChapterUrl> chapterUrls = new ArrayList<>();
@@ -34,14 +32,4 @@ public abstract class ContentsHandler implements AbstractResponse {
     }
 
     public abstract void onResult(List<ChapterUrl> chapterUrls);
-
-    @Override
-    public void onFailure(String response, Throwable e) {
-
-    }
-
-    @Override
-    public void onFinish() {
-
-    }
 }

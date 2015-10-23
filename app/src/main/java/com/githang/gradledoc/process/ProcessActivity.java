@@ -38,12 +38,12 @@ public class ProcessActivity extends BaseBackActivity {
         }
 
         @Override
-        public void onFinish() {
+        public void onUIFinish() {
             mProgressDialog.dismiss();
         }
 
         @Override
-        public void onFailure(String response, Throwable e) {
+        public void onUIFailed(Throwable e) {
             Toast.makeText(mContext, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 

@@ -15,9 +15,9 @@ import java.util.List;
  * Date: 2014-12-03
  * Time: 22:25
  */
-public abstract class ProcessHandler implements AbstractResponse {
+public abstract class ProcessHandler extends AbstractResponse {
     @Override
-    public void onSuccess(String response) {
+    public void onUISuccess(String response) {
         Document doc = Jsoup.parse(response);
         Elements elements = doc.select("div[class=table-list-cell]");
         List<Commit> commits = new ArrayList<>(elements.size());
@@ -31,14 +31,4 @@ public abstract class ProcessHandler implements AbstractResponse {
     }
 
     public abstract void onResult(List<Commit> commits);
-
-    @Override
-    public void onFailure(String response, Throwable e) {
-
-    }
-
-    @Override
-    public void onFinish() {
-
-    }
 }

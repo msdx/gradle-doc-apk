@@ -2,10 +2,17 @@ package com.githang.gradledoc.datasource;
 
 import android.content.Context;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.TextHttpResponseHandler;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
-import org.apache.http.Header;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.WeakHashMap;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * User: Geek_Soledad(msdx.android@qq.com)
@@ -14,11 +21,12 @@ import org.apache.http.Header;
  * FIXME
  */
 public class HttpProxy {
+    private static final AtomicInteger TAG_GENERATOR = new AtomicInteger(0);
     private static HttpProxy instance;
 
-    private Context mContext;
     private HttpDBCache mCache;
-    private AsyncHttpClient mHttpClient;
+    private OkHttpClient mHttpClient;
+    private WeakHashMap<Context, List<Integer>> mRequestTags;
 
     public static synchronized HttpProxy getInstance(Context context) {
         if (instance == null) {
@@ -28,9 +36,12 @@ public class HttpProxy {
     }
 
     public HttpProxy(Context context) {
-        mContext = context;
-        mCache = new HttpDBCache(context);
-        mHttpClient = new AsyncHttpClient();
+        mHttpClient = new OkHttpClient();
+        mHttpClient.setConnectTimeout(15, TimeUnit.SECONDS);
+        mHttpClient.setReadTimeout(15, TimeUnit.SECONDS);
+        mHttpClient.setWriteTimeout(15, TimeUnit.SECONDS);
+        mRequestTags = new WeakHashMap<>();
+        mCache = HttpDBCache.getInstance(context);
     }
 
     /**
@@ -38,24 +49,36 @@ public class HttpProxy {
      *
      * @param context
      * @param url
-     * @param response
+     * @param resp
      */
-    public void forceRequestUrl(Context context, final String url, final AbstractResponse response) {
-        mHttpClient.get(context, url, new TextHttpResponseHandler() {
+    public void forceRequestUrl(final Context context, final String url, final AbstractResponse resp) {
+        final int tag = TAG_GENERATOR.getAndIncrement();
+        saveTag(context, tag);
+        mHttpClient.newCall(new Request.Builder().url(url).tag(tag).build()).enqueue(new Callback() {
             @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                response.onFailure(responseString, throwable);
+            public void onFailure(Request request, IOException e) {
+                resp.onFailure("", e);
+                resp.onFinish();
+                removeTag(context, tag);
             }
 
             @Override
-            public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                mCache.saveResponse(url, responseString);
-                response.onSuccess(responseString);
-            }
-
-            @Override
-            public void onFinish() {
-                response.onFinish();
+            public void onResponse(Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    try {
+                        String body = response.body().string();
+                        String handled = resp.handleResponse(body);
+                        mCache.saveResponse(url, handled);
+                        resp.onSuccess(handled);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        resp.onFinish();
+                    }
+                } else {
+                    onFailure(null, new IOException("请求失败"));
+                }
+                removeTag(context, tag);
             }
         });
     }
@@ -86,6 +109,34 @@ public class HttpProxy {
      * @param context
      */
     public void cancelRequests(Context context) {
-        mHttpClient.cancelRequests(context, true);
+        synchronized (mRequestTags) {
+            List<Integer> tags = mRequestTags.get(context);
+            if (tags != null) {
+                for(Integer tag : tags) {
+                    mHttpClient.cancel(tag);
+                }
+                tags.clear();
+            }
+        }
+    }
+
+    private void saveTag(Context context, Integer tag) {
+        synchronized (mRequestTags) {
+            List<Integer> tags = mRequestTags.get(context);
+            if (tags == null) {
+                tags = new ArrayList<>();
+                mRequestTags.put(context, tags);
+            }
+            tags.add(tag);
+        }
+    }
+
+    private synchronized void removeTag(Context context, Integer tag) {
+        synchronized (mRequestTags) {
+            List<Integer> tags = mRequestTags.get(context);
+            if (tags != null) {
+                tags.remove(tag);
+            }
+        }
     }
 }

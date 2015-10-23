@@ -35,17 +35,17 @@ public class ChapterActivity extends BaseBackActivity {
 
     private ChapterHandler mChapterHandler = new ChapterHandler() {
         @Override
-        public void onResult(String title, String doc) {
-            mDocView.setText(Html.fromHtml(doc, new URLImageParser(mDocView), new ExtendedTagHandler()));
+        public void onUISuccess(String content) {
+            mDocView.setText(Html.fromHtml(content, new URLImageParser(mDocView), new ExtendedTagHandler()));
         }
 
         @Override
-        public void onFailure(String response, Throwable e) {
+        public void onUIFailed(Throwable e) {
             Toast.makeText(mContext, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         @Override
-        public void onFinish() {
+        public void onUIFinish() {
             mProgressDialog.dismiss();
         }
     };

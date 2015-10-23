@@ -47,13 +47,13 @@ public class ContentsActivity extends BaseActivity {
         }
 
         @Override
-        public void onFinish() {
-            mProgressDialog.dismiss();
+        public void onUIFailed(Throwable e) {
+            Toast.makeText(mContext, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         @Override
-        public void onFailure(String response, Throwable e) {
-            Toast.makeText(mContext, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+        public void onUIFinish() {
+            mProgressDialog.dismiss();
         }
 
     };

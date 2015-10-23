@@ -14,14 +14,18 @@ import android.database.sqlite.SQLiteOpenHelper;
  * FIXME
  */
 public class HttpDBCache extends SQLiteOpenHelper {
-    private static final int VERSION = 1;
+
+    private static HttpDBCache instance;
+
+    private static final int VERSION = 2;
     private static final String DB_NAME = "http_cache_db";
 
     private static final String TABLE_RESPONSE = "t_response";
     private static final String COL_ID = "_id";
     private static final String COL_URL = "url";
     private static final String COL_RESPONSE = "response";
-    private static final String CREATE_RESPONSE = String.format("CREATE TABLE '%s'(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT)",
+    private static final String CREATE_RESPONSE = String.format(
+            "CREATE TABLE '%s'(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT)",
             TABLE_RESPONSE, COL_ID, COL_URL, COL_RESPONSE);
     private static final String CREATE_RESPONSE_INDEX = String.format("CREATE UNIQUE INDEX unique_index_url ON %s (%s)", TABLE_RESPONSE, COL_URL);
 
@@ -29,7 +33,7 @@ public class HttpDBCache extends SQLiteOpenHelper {
 //    private static final String CRAETE_CONFIG = "CREATE TABLE 't_config'(_id INTEGER PRIMARY KEY AUTOINCREMENT, key TEXT, value TEXT)";
 
 
-    public HttpDBCache(Context context) {
+    private HttpDBCache(Context context) {
         super(context, DB_NAME, null, VERSION);
     }
 
@@ -42,7 +46,6 @@ public class HttpDBCache extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
     /**
@@ -98,4 +101,11 @@ public class HttpDBCache extends SQLiteOpenHelper {
 //
 //        return null;
 //    }
+
+    public static synchronized HttpDBCache getInstance(Context context) {
+        if (instance == null) {
+            instance = new HttpDBCache(context.getApplicationContext());
+        }
+        return instance;
+    }
 }
