@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.util.Locale;
 
 /**
  * HTTP请求数据缓存
@@ -79,7 +82,17 @@ public class HttpDBCache extends SQLiteOpenHelper {
         cv.put(COL_URL, url);
         cv.put(COL_RESPONSE, response);
         db.replace(TABLE_RESPONSE, null, cv);
+        logMaxId(db);
         db.close();
+    }
+
+    private void logMaxId(SQLiteDatabase db) {
+        String sql = String.format(Locale.US, "select max(%s) AS maxId from %s", COL_ID, TABLE_RESPONSE);
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToNext()) {
+            int maxId = cursor.getInt(cursor.getColumnIndex("maxId"));
+            Log.d("Cache", "id ..." + maxId);
+        }
     }
 
 //    /**

@@ -10,6 +10,7 @@ import com.squareup.okhttp.Response;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -57,7 +58,10 @@ public class HttpProxy {
         mHttpClient.newCall(new Request.Builder().url(url).tag(tag).build()).enqueue(new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
-                resp.onFailure("", e);
+                String msg = e.getMessage().toUpperCase(Locale.US);
+                if (!msg.contains("CANCELED") && !msg.contains("SOCKET CLOSED")) {
+                    resp.onFailure("", e);
+                }
                 resp.onFinish();
                 removeTag(context, tag);
             }
