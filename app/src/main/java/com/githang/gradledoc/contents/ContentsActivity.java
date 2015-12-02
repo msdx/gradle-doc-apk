@@ -19,6 +19,7 @@ import com.githang.gradledoc.chapter.ChapterActivity;
 import com.githang.gradledoc.common.BaseActivity;
 import com.githang.gradledoc.datasource.HttpProxy;
 import com.githang.gradledoc.others.AboutActivity;
+import com.githang.gradledoc.others.ContributorsActivity;
 import com.githang.gradledoc.process.ProcessActivity;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
@@ -64,10 +65,8 @@ public class ContentsActivity extends BaseActivity {
         mContext = this;
         mHttpProxy = HttpProxy.getInstance(this);
         getSupportActionBar().setTitle(R.string.app_title);
-        setContentView(R.layout.activity_contents);
-        mListView = (ListView) findViewById(R.id.contents);
-        mListView.addHeaderView(new View(this));
-        mListView.addFooterView(new View(this));
+        setContentView(R.layout.activity_list);
+        mListView = (ListView) findViewById(android.R.id.list);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -125,24 +124,25 @@ public class ContentsActivity extends BaseActivity {
                 return true;
             case R.id.action_process:
                 startActivity(new Intent(mContext, ProcessActivity.class));
+                return true;
+            case R.id.action_contributors:
+                startActivity(new Intent(mContext, ContributorsActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
 
     }
 
-
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPageEnd(LOG_TAG);
         MobclickAgent.onPause(mContext);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart(LOG_TAG);
         MobclickAgent.onResume(mContext);
     }
 }

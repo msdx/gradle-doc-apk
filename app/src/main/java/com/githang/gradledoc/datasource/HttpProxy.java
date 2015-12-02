@@ -71,7 +71,7 @@ public class HttpProxy {
                 if (response.isSuccessful()) {
                     try {
                         String body = response.body().string();
-                        String handled = resp.handleResponse(body);
+                        String handled = resp.preHandleResponse(body);
                         mCache.saveResponse(url, handled);
                         resp.onSuccess(handled);
                     } catch (Exception e) {

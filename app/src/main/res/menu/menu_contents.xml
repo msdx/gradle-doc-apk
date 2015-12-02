@@ -1,21 +1,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:tools="http://schemas.android.com/tools"
       xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
       tools:context=".MainActivity">
     <item
         android:id="@+id/action_refresh"
-        android:orderInCategory="1"
         android:icon="@drawable/ic_refresh"
-        app:showAsAction="ifRoom"
-        android:title="@string/action_refresh"/>
+        android:orderInCategory="1"
+        android:title="@string/action_refresh"
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_process"
+        android:orderInCategory="98"
         android:title="@string/title_activity_process"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_contributors"
         android:orderInCategory="99"
+        android:title="@string/action_contributors"
         app:showAsAction="never"/>
     <item
         android:id="@+id/action_about"
-        android:title="@string/action_about"
         android:orderInCategory="100"
+        android:title="@string/action_about"
         app:showAsAction="never"/>
 </menu>

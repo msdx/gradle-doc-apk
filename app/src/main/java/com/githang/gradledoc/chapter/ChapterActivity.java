@@ -1,15 +1,11 @@
 package com.githang.gradledoc.chapter;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +27,6 @@ public class ChapterActivity extends BaseBackActivity {
     private Context mContext;
 
     private TextView mDocView;
-    private ProgressDialog mProgressDialog;
 
     private ChapterHandler mChapterHandler = new ChapterHandler() {
         @Override
@@ -46,7 +41,7 @@ public class ChapterActivity extends BaseBackActivity {
 
         @Override
         public void onUIFinish() {
-            mProgressDialog.dismiss();
+            dismissProgressDialog();
         }
     };
 
@@ -65,57 +60,30 @@ public class ChapterActivity extends BaseBackActivity {
         requestContents();
     }
 
-
     private void requestContents() {
-        mProgressDialog.show();
+        showProgressDialog();
         HttpProxy.getInstance(this).requestUrl(this, url, mChapterHandler);
     }
 
-
     private void initViews() {
         mDocView = (TextView) findViewById(R.id.doc);
-        mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setCancelable(true);
-        mProgressDialog.setMessage(getString(R.string.loading));
-        mProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                mHttpProxy.cancelRequests(mContext);
-            }
-        });
-    }
-
-
-    @Override
-     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_chapter, menu);
-        return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_refresh) {
-            mProgressDialog.show();
-            mHttpProxy.forceRequestUrl(mContext, url, mChapterHandler);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    protected void onRefresh() {
+        showProgressDialog();
+        mHttpProxy.forceRequestUrl(mContext, url, mChapterHandler);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPageEnd(LOG_TAG);
         MobclickAgent.onPause(mContext);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart(LOG_TAG);
         MobclickAgent.onResume(mContext);
     }
 

@@ -15,7 +15,7 @@ import org.jsoup.select.Elements;
  */
 public abstract class ChapterHandler extends AbstractResponse {
     @Override
-    public String handleResponse(String response) {
+    public String preHandleResponse(String response) {
         Document doc = Jsoup.parse(response);
         Element chapter = doc.select("div.chapter").first();
         String title = chapter.select("div.titlepage").select("h1").text();

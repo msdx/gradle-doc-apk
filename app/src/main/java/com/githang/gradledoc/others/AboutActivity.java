@@ -4,6 +4,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.TextView;
 
 import com.githang.gradledoc.R;
@@ -34,18 +35,24 @@ public class AboutActivity extends BaseBackActivity {
         }
     }
 
-
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPageEnd(LOG_TAG);
         MobclickAgent.onPause(this);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart(LOG_TAG);
         MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
+    }
+
+    @Override
+    protected void onRefresh() {
     }
 }

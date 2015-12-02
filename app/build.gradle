@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 
-ext.keyPswd = hasProperty("keyPswd")? getProperty("keyPswd"):""
+ext.keyPswd = hasProperty("keyPswd")? getProperty("keyPswd"):"Gradledoc"
 
 android {
     compileSdkVersion 22
@@ -10,8 +10,8 @@ android {
         applicationId "com.githang.gradledoc"
         minSdkVersion 8
         targetSdkVersion 22
-        versionCode 9
-        versionName "0.2.1"
+        versionCode 10
+        versionName "0.2.2"
     }
 
     compileOptions {
@@ -28,6 +28,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            signingConfig  signingConfigs.myConfig
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -66,6 +69,11 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
     // 状态栏颜色
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    // 友盟
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.githang:umeng-update:2.6.0.1'
+    // json
+    compile 'com.alibaba:fastjson:1.2.4'
+    // android代码片段库
+    compile 'com.githang:androidsnippet:0.5'
 }

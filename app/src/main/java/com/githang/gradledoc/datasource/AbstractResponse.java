@@ -31,8 +31,8 @@ public abstract class AbstractResponse {
         }
     });
 
-    public final void onSuccess(String article) {
-        mUIHandler.obtainMessage(SUCCESS, article).sendToTarget();
+    public final void onSuccess(String content) {
+        mUIHandler.obtainMessage(SUCCESS, content).sendToTarget();
     }
 
     public final void onFailure(String response, Throwable e) {
@@ -43,11 +43,11 @@ public abstract class AbstractResponse {
         mUIHandler.obtainMessage(FINISH).sendToTarget();
     }
 
-    public String handleResponse(String response){
+    public String preHandleResponse(String response){
         return response;
     }
 
-    public abstract void onUISuccess(String article);
+    public abstract void onUISuccess(String content);
 
     public abstract void onUIFailed(Throwable e);
 
