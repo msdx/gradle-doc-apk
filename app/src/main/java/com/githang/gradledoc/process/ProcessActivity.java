@@ -51,11 +51,9 @@ public class ProcessActivity extends BaseBackActivity {
     protected void onCreate(Bundle savedInstanceState) {
         mContext = this;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_process);
+        setContentView(R.layout.activity_list);
 
-        mListView = (ListView) findViewById(R.id.translation_process);
-        mListView.addFooterView(new View(this));
-        mListView.addHeaderView(new View(this));
+        mListView = (ListView) findViewById(android.R.id.list);
 
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setCancelable(true);
