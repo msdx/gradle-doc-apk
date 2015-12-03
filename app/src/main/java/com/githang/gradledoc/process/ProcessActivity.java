@@ -1,10 +1,7 @@
 package com.githang.gradledoc.process;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,7 +16,6 @@ import java.util.List;
 
 public class ProcessActivity extends BaseBackActivity {
     private static final String URL_PROCESS = "https://github.com/msdx/gradledoc/commits/1.12";
-    private ProgressDialog mProgressDialog;
     private ListView mListView;
     private Context mContext;
 
@@ -38,7 +34,7 @@ public class ProcessActivity extends BaseBackActivity {
 
         @Override
         public void onUIFinish() {
-            mProgressDialog.dismiss();
+            dismissProgressDialog();
         }
 
         @Override
@@ -55,38 +51,17 @@ public class ProcessActivity extends BaseBackActivity {
 
         mListView = (ListView) findViewById(android.R.id.list);
 
-        mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setCancelable(true);
-        mProgressDialog.setMessage(getString(R.string.loading));
-        mProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                HttpProxy.getInstance(mContext).cancelRequests(mContext);
-            }
-        });
-
-        mProgressDialog.show();
+        showProgressDialog();
         boolean isCache = HttpProxy.getInstance(this).requestUrl(this, URL_PROCESS, mProcessHandler);
         if(isCache) {
-            mProgressDialog.show();
+            showProgressDialog();
             HttpProxy.getInstance(this).forceRequestUrl(this, URL_PROCESS, mProcessHandler);
         }
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_refresh) {
-
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     protected void onRefresh() {
-        mProgressDialog.show();
+        showProgressDialog();
         HttpProxy.getInstance(this).forceRequestUrl(mContext, URL_PROCESS, mProcessHandler);
     }
 }

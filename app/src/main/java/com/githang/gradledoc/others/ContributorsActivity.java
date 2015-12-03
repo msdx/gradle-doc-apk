@@ -70,13 +70,15 @@ public class ContributorsActivity extends BaseBackActivity {
 
         };
         mListView.setAdapter(mAdapter);
-        onRefresh();
+
+        showProgressDialog();
+        HttpProxy.getInstance(this).requestUrl(this, Consts.URL_CONTRIBUTORS, mResponse);
     }
 
     @Override
     protected void onRefresh() {
         showProgressDialog();
-        HttpProxy.getInstance(this).requestUrl(this, Consts.URL_CONTRIBUTORS, mResponse);
+        HttpProxy.getInstance(this).forceRequestUrl(this, Consts.URL_CONTRIBUTORS, mResponse);
     }
 
     @Override
