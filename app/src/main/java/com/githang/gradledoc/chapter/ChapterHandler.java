@@ -16,7 +16,6 @@ public abstract class ChapterHandler extends AbstractResponse {
     @Override
     public String preHandleResponse(String response) {
         Document doc = Jsoup.parse(response);
-        doc.head().append("<style>img{max-width: 100%; width:auto; height: auto;}</style>");
         doc.select("div.navheader").remove();
         doc.select("div.navfooter").remove();
 

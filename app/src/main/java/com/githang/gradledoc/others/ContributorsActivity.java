@@ -10,7 +10,7 @@ import com.alibaba.fastjson.JSON;
 import com.githang.android.snippet.adapter.BaseListAdapter;
 import com.githang.gradledoc.Consts;
 import com.githang.gradledoc.R;
-import com.githang.gradledoc.common.BaseBackActivity;
+import com.githang.gradledoc.common.BaseRefreshActivity;
 import com.githang.gradledoc.datasource.AbstractResponse;
 import com.githang.gradledoc.datasource.HttpProxy;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -26,7 +26,7 @@ import java.util.List;
  * @version 2015-12-02
  * @since 2015-12-02
  */
-public class ContributorsActivity extends BaseBackActivity {
+public class ContributorsActivity extends BaseRefreshActivity {
     private AbstractResponse mResponse = new AbstractResponse() {
         @Override
         public void onUISuccess(String content) {

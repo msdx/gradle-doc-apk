@@ -4,30 +4,33 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.githang.android.snippet.adapter.BaseListAdapter;
 import com.githang.gradledoc.R;
-import com.githang.gradledoc.common.BaseBackActivity;
-import com.githang.gradledoc.common.BaseListAdapter;
+import com.githang.gradledoc.common.BaseRefreshActivity;
 import com.githang.gradledoc.datasource.HttpProxy;
 
 import java.util.List;
 
-public class ProcessActivity extends BaseBackActivity {
+public class ProcessActivity extends BaseRefreshActivity {
     private static final String URL_PROCESS = "https://github.com/msdx/gradledoc/commits/1.12";
     private ListView mListView;
     private Context mContext;
 
     private ProcessHandler mProcessHandler = new ProcessHandler() {
         @Override
-        public void onResult(List<Commit> commits) {
+        public void onResult(final List<Commit> commits) {
             mListView.setAdapter(new BaseListAdapter<Commit>(mContext, commits, R.layout.item_process) {
                 @Override
-                public void initItemView(int position, View itemView) {
-                    Commit commit = getItem(position);
-                    ((TextView)itemView.findViewById(R.id.commit_title)).setText(commit.getTitle());
-                    ((TextView)itemView.findViewById(R.id.commit_meta)).setText(commit.getMeta());
+                protected void holdView(View parent, Holder holder) {
+                    holder.hold(R.id.commit_title, R.id.commit_meta);
+                }
+
+                @Override
+                protected void bindData(int position, Holder holder, Commit commit) {
+                    holder.holdText(R.id.commit_title, commit.getTitle());
+                    holder.holdText(R.id.commit_meta, commit.getMeta());
                 }
             });
         }
@@ -54,8 +57,7 @@ public class ProcessActivity extends BaseBackActivity {
         showProgressDialog();
         boolean isCache = HttpProxy.getInstance(this).requestUrl(this, URL_PROCESS, mProcessHandler);
         if(isCache) {
-            showProgressDialog();
-            HttpProxy.getInstance(this).forceRequestUrl(this, URL_PROCESS, mProcessHandler);
+            onRefresh();
         }
     }
 

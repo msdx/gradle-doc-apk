@@ -15,7 +15,7 @@ import com.githang.gradledoc.datasource.HttpProxy;
  * Date: 2014-12-03
  * Time: 21:59
  */
-public abstract class BaseBackActivity extends BaseActivity {
+public abstract class BaseRefreshActivity extends BaseActivity {
     private ProgressDialog mProgressDialog;
 
     @Override

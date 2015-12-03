@@ -9,12 +9,12 @@ import android.widget.Toast;
 
 import com.githang.gradledoc.Consts;
 import com.githang.gradledoc.R;
-import com.githang.gradledoc.common.BaseBackActivity;
+import com.githang.gradledoc.common.BaseRefreshActivity;
 import com.githang.gradledoc.datasource.AbstractResponse;
 import com.githang.gradledoc.datasource.HttpProxy;
 import com.umeng.analytics.MobclickAgent;
 
-public class ChapterActivity extends BaseBackActivity {
+public class ChapterActivity extends BaseRefreshActivity {
     private String url;
 
     private HttpProxy mHttpProxy;

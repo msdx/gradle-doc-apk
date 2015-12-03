@@ -8,10 +8,10 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import com.githang.gradledoc.R;
-import com.githang.gradledoc.common.BaseBackActivity;
+import com.githang.gradledoc.common.BaseRefreshActivity;
 import com.umeng.analytics.MobclickAgent;
 
-public class AboutActivity extends BaseBackActivity {
+public class AboutActivity extends BaseRefreshActivity {
     private static final String LOG_TAG = AboutActivity.class.getSimpleName();
 
     private TextView mVersion;
