@@ -5,7 +5,6 @@ import com.githang.gradledoc.datasource.AbstractResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 /**
  * User: Geek_Soledad(msdx.android@qq.com)
@@ -17,13 +16,13 @@ public abstract class ChapterHandler extends AbstractResponse {
     @Override
     public String preHandleResponse(String response) {
         Document doc = Jsoup.parse(response);
+        doc.head().append("<style>img{max-width: 100%; width:auto; height: auto;}</style>");
+        doc.select("div.navheader").remove();
+        doc.select("div.navfooter").remove();
+
         Element chapter = doc.select("div.chapter").first();
-        String title = chapter.select("div.titlepage").select("h1").text();
-        chapter.removeClass("titlepage");
-        Elements preElems = chapter.select("pre");
-        for (Element elem : preElems) {
-            elem.html(elem.html().replaceAll("\n", "<br/>").replaceAll(" ", "&nbsp;"));
-        }
-        return chapter.html();
+        chapter.select("div.titlepage").first().remove();
+
+        return doc.html();
     }
 }
