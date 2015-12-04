@@ -2,21 +2,19 @@ package com.githang.gradledoc.others;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.githang.android.snippet.adapter.BaseListAdapter;
 import com.githang.gradledoc.Consts;
 import com.githang.gradledoc.R;
-import com.githang.gradledoc.common.BaseRefreshActivity;
+import com.githang.gradledoc.common.ListActivity;
 import com.githang.gradledoc.datasource.AbstractResponse;
 import com.githang.gradledoc.datasource.HttpProxy;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.umeng.analytics.MobclickAgent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,12 +24,12 @@ import java.util.List;
  * @version 2015-12-02
  * @since 2015-12-02
  */
-public class ContributorsActivity extends BaseRefreshActivity {
+public class ContributorsActivity extends ListActivity<Contributor> {
     private AbstractResponse mResponse = new AbstractResponse() {
         @Override
         public void onUISuccess(String content) {
             List<Contributor> contributors = JSON.parseArray(content, Contributor.class);
-            mAdapter.update(contributors);
+            update(contributors);
         }
 
         @Override
@@ -45,31 +43,9 @@ public class ContributorsActivity extends BaseRefreshActivity {
         }
     };
 
-    private ListView mListView;
-    private BaseListAdapter<Contributor> mAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_list);
-        mListView = (ListView) findViewById(android.R.id.list);
-        mAdapter = new BaseListAdapter<Contributor>(this, new ArrayList<Contributor>(),
-                R.layout.item_contributor) {
-            @Override
-            protected void holdView(View parent, Holder holder) {
-                holder.hold(R.id.avatar, R.id.name, R.id.contributions);
-            }
-
-            @Override
-            protected void bindData(int position, Holder holder, Contributor data) {
-                holder.holdText(R.id.name, data.getName());
-                holder.holdText(R.id.contributions, data.getContributions() + " contributions");
-                ImageView imageView = holder.get(R.id.avatar);
-                ImageLoader.getInstance().displayImage(data.getAvatar(), imageView);
-            }
-
-        };
-        mListView.setAdapter(mAdapter);
 
         showProgressDialog();
         HttpProxy.getInstance(this).requestUrl(this, Consts.URL_CONTRIBUTORS, mResponse);
@@ -82,14 +58,17 @@ public class ContributorsActivity extends BaseRefreshActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
+    public BaseListAdapter.Holder createHolder(int position, ViewGroup parent) {
+        BaseListAdapter.Holder holder = new BaseListAdapter.Holder(View.inflate(this, R.layout.item_contributor, null));
+        holder.hold(R.id.name, R.id.contributions, R.id.avatar);
+        return holder;
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
+    public void bindData(int position, BaseListAdapter.Holder holder, Contributor data) {
+        holder.setText(R.id.name, data.getName());
+        holder.setText(R.id.contributions, data.getContributions() + " contributions");
+        ImageView imageView = holder.get(R.id.avatar);
+        ImageLoader.getInstance().displayImage(data.getAvatar(), imageView);
     }
 }

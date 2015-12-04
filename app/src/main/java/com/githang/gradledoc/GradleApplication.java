@@ -43,7 +43,6 @@ public class GradleApplication extends Application {
 
     private void initUmeng() {
         MobclickAgent.setDebugMode(BuildConfig.DEBUG);
-        MobclickAgent.updateOnlineConfig(this);
 
         MobclickAgent.setCatchUncaughtExceptions(true);
     }

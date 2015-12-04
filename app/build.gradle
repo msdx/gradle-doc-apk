@@ -69,5 +69,5 @@ dependencies {
     // json
     compile 'com.alibaba:fastjson:1.2.4'
     // android代码片段库
-    compile 'com.githang:androidsnippet:0.5'
+    compile 'com.githang:androidsnippet:0.6-SNAPSHOT'
 }

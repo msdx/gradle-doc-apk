@@ -17,5 +17,6 @@ allprojects {
         jcenter()
         mavenCentral()
         maven {url 'https://dl.bintray.com/msdx/maven'}
+        maven { url "http://oss.jfrog.org/oss-snapshot-local/" }
     }
 }

@@ -9,12 +9,10 @@ import android.widget.TextView;
 
 import com.githang.gradledoc.R;
 import com.githang.gradledoc.common.BaseRefreshActivity;
-import com.umeng.analytics.MobclickAgent;
 
 public class AboutActivity extends BaseRefreshActivity {
-    private static final String LOG_TAG = AboutActivity.class.getSimpleName();
-
     private TextView mVersion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,18 +31,6 @@ public class AboutActivity extends BaseRefreshActivity {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
     }
 
     @Override

@@ -56,7 +56,6 @@ public abstract class BaseRefreshActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_refresh, menu);

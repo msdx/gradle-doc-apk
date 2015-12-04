@@ -1,27 +1,24 @@
 package com.githang.gradledoc.contents;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
+import com.githang.android.snippet.adapter.BaseListAdapter;
 import com.githang.gradledoc.Consts;
 import com.githang.gradledoc.R;
 import com.githang.gradledoc.chapter.ChapterActivity;
-import com.githang.gradledoc.common.BaseActivity;
+import com.githang.gradledoc.common.ListActivity;
 import com.githang.gradledoc.datasource.HttpProxy;
 import com.githang.gradledoc.others.AboutActivity;
 import com.githang.gradledoc.others.ContributorsActivity;
 import com.githang.gradledoc.process.ProcessActivity;
-import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 
 import java.util.List;
@@ -32,19 +29,13 @@ import java.util.List;
  *
  * @author Geek_Soledad (msdx.android@qq.com)
  */
-public class ContentsActivity extends BaseActivity {
-    private static final String LOG_TAG = ContentsActivity.class.getSimpleName();
-
-    private ProgressDialog mProgressDialog;
-    private ListView mListView;
-
+public class ContentsActivity extends ListActivity<ChapterUrl> {
     private HttpProxy mHttpProxy;
     private Context mContext;
     private ContentsHandler mContentsHandler = new ContentsHandler() {
         @Override
         public void onResult(List<ChapterUrl> chapterUrls) {
-            ArrayAdapter<ChapterUrl> adapter = new ArrayAdapter<ChapterUrl>(mContext, R.layout.item_contents, chapterUrls);
-            mListView.setAdapter(adapter);
+            update(chapterUrls);
         }
 
         @Override
@@ -54,9 +45,8 @@ public class ContentsActivity extends BaseActivity {
 
         @Override
         public void onUIFinish() {
-            mProgressDialog.dismiss();
+            dismissProgressDialog();
         }
-
     };
 
     @Override
@@ -65,27 +55,6 @@ public class ContentsActivity extends BaseActivity {
         mContext = this;
         mHttpProxy = HttpProxy.getInstance(this);
         getSupportActionBar().setTitle(R.string.app_title);
-        setContentView(R.layout.activity_list);
-        mListView = (ListView) findViewById(android.R.id.list);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ChapterUrl chapterUrl = (ChapterUrl) parent.getAdapter().getItem(position);
-                Intent intent = new Intent(mContext, ChapterActivity.class);
-                intent.putExtra(Consts.TITLE, chapterUrl.getTitle());
-                intent.putExtra(Consts.URL, Consts.BASE_URL + chapterUrl.getUrl());
-                startActivity(intent);
-            }
-        });
-        mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setCancelable(true);
-        mProgressDialog.setMessage(getString(R.string.loading));
-        mProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                mHttpProxy.cancelRequests(mContext);
-            }
-        });
 
         requestContents();
 
@@ -95,7 +64,7 @@ public class ContentsActivity extends BaseActivity {
     }
 
     private void requestContents() {
-        mProgressDialog.show();
+        showProgressDialog();
         HttpProxy.getInstance(this).requestUrl(this, Consts.USER_GUIDE, mContentsHandler);
     }
 
@@ -104,6 +73,11 @@ public class ContentsActivity extends BaseActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_contents, menu);
         return true;
+    }
+
+    @Override
+    @SuppressWarnings("unused")
+    protected void onRefresh() {
     }
 
     @Override
@@ -116,7 +90,7 @@ public class ContentsActivity extends BaseActivity {
         //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.action_refresh:
-                mProgressDialog.show();
+                showProgressDialog();
                 mHttpProxy.forceRequestUrl(mContext, Consts.USER_GUIDE, mContentsHandler);
                 return true;
             case R.id.action_about:
@@ -135,14 +109,23 @@ public class ContentsActivity extends BaseActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(mContext);
+    public BaseListAdapter.Holder createHolder(int position, ViewGroup parent) {
+        BaseListAdapter.Holder holder = new BaseListAdapter.Holder(View.inflate(this, R.layout.item_contents, null));
+        holder.hold(R.id.text);
+        return holder;
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(mContext);
+    public void bindData(int position, BaseListAdapter.Holder holder, ChapterUrl data) {
+        holder.setText(R.id.text, data.getTitle());
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        ChapterUrl chapterUrl = (ChapterUrl) parent.getAdapter().getItem(position);
+        Intent intent = new Intent(mContext, ChapterActivity.class);
+        intent.putExtra(Consts.TITLE, chapterUrl.getTitle());
+        intent.putExtra(Consts.URL, Consts.BASE_URL + chapterUrl.getUrl());
+        startActivity(intent);
     }
 }

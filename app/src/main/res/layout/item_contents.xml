@@ -4,7 +4,7 @@
           android:layout_width="match_parent"
           android:background="@drawable/item_contents_bg"
           android:gravity="center_vertical"
-          android:paddingLeft="16dp"
-          android:layout_height="54dp">
+          android:padding="16dp"
+          android:layout_height="wrap_content">
 
 </TextView>

@@ -1,10 +1,9 @@
 package com.githang.gradledoc;
 
 /**
- * User: Geek_Soledad(msdx.android@qq.com)
- * Date: 2014-11-29
- * Time: 13:04
- * FIXME
+ * 常量。
+ * @author  Geek_Soledad(msdx.android@qq.com)
+ * @since  2014-11-29 13:04
  */
 public class Consts {
     public static final String TITLE = "title";
