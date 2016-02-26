@@ -49,7 +49,7 @@ public class ChapterActivity extends BaseRefreshActivity {
 
         Bundle bundle = getIntent().getExtras();
         url = bundle.getString(Consts.URL);
-        getSupportActionBar().setTitle(bundle.getString(Consts.TITLE));
+        setTitle(bundle.getString(Consts.TITLE));
         initView();
 
         requestContents();

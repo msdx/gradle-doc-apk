@@ -54,7 +54,7 @@ public class ContentsActivity extends ListActivity<ChapterUrl> {
         super.onCreate(savedInstanceState);
         mContext = this;
         mHttpProxy = HttpProxy.getInstance(this);
-        getSupportActionBar().setTitle(R.string.app_title);
+        setTitle(R.string.app_title);
 
         requestContents();
 

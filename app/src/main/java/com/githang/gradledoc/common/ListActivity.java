@@ -25,7 +25,6 @@ public abstract class ListActivity<T> extends BaseRefreshActivity implements Bas
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-
         mListView = (ListView) findViewById(android.R.id.list);
         mAdapter = new BaseListAdapter<>(this);
         mListView.setAdapter(mAdapter);

@@ -21,7 +21,7 @@ public abstract class BaseRefreshActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         final Context context = this;
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setCanceledOnTouchOutside(false);

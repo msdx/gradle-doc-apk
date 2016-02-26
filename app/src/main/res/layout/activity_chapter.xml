@@ -5,9 +5,17 @@
                 android:fitsSystemWindows="true"
                 tools:context="com.githang.gradledoc.chapter.ChapterActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/primary"/>
+
     <WebView
         android:id="@+id/doc"
-        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:scrollbars="none"/>
 </RelativeLayout>
