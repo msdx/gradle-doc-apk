@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView android:id="@+id/text"
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:background="@drawable/item_contents_bg"
-          android:gravity="center_vertical"
-          android:padding="16dp"
-          android:shadowColor="@color/grey"
-          android:shadowDx="1"
-          android:shadowDy="1"
-          android:shadowRadius="3">
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
 
-</TextView>
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_contents_bg"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:shadowColor="@color/grey"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="3"/>
+</android.support.v7.widget.CardView>
