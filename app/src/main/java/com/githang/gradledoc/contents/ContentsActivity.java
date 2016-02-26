@@ -8,10 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.githang.android.snippet.adapter.BaseListAdapter;
-import com.githang.gradledoc.Consts;
+import com.githang.gradledoc.Constants;
 import com.githang.gradledoc.R;
 import com.githang.gradledoc.chapter.ChapterActivity;
 import com.githang.gradledoc.common.ListActivity;
@@ -65,7 +66,7 @@ public class ContentsActivity extends ListActivity<ChapterUrl> {
 
     private void requestContents() {
         showProgressDialog();
-        HttpProxy.getInstance(this).requestUrl(this, Consts.USER_GUIDE, mContentsHandler);
+        HttpProxy.getInstance(this).requestUrl(this, Constants.USER_GUIDE, mContentsHandler);
     }
 
     @Override
@@ -91,7 +92,7 @@ public class ContentsActivity extends ListActivity<ChapterUrl> {
         switch (id) {
             case R.id.action_refresh:
                 showProgressDialog();
-                mHttpProxy.forceRequestUrl(mContext, Consts.USER_GUIDE, mContentsHandler);
+                mHttpProxy.forceRequestUrl(mContext, Constants.USER_GUIDE, mContentsHandler);
                 return true;
             case R.id.action_about:
                 startActivity(new Intent(mContext, AboutActivity.class));
@@ -124,8 +125,8 @@ public class ContentsActivity extends ListActivity<ChapterUrl> {
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ChapterUrl chapterUrl = (ChapterUrl) parent.getAdapter().getItem(position);
         Intent intent = new Intent(mContext, ChapterActivity.class);
-        intent.putExtra(Consts.TITLE, chapterUrl.getTitle());
-        intent.putExtra(Consts.URL, Consts.BASE_URL + chapterUrl.getUrl());
+        intent.putExtra(Constants.TITLE, chapterUrl.getTitle());
+        intent.putExtra(Constants.URL, Constants.BASE_URL + chapterUrl.getUrl());
         startActivity(intent);
     }
 }

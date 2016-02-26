@@ -7,7 +7,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
 
-import com.githang.gradledoc.Consts;
+import com.githang.gradledoc.Constants;
 import com.githang.gradledoc.R;
 import com.githang.gradledoc.common.BaseRefreshActivity;
 import com.githang.gradledoc.datasource.AbstractResponse;
@@ -26,7 +26,7 @@ public class ChapterActivity extends BaseRefreshActivity {
     private AbstractResponse mChapterHandler = new ChapterHandler() {
         @Override
         public void onUISuccess(String content) {
-            mDocView.loadDataWithBaseURL(Consts.BASE_URL, content, "text/html", "charset=UTF-8", null);
+            mDocView.loadDataWithBaseURL(Constants.BASE_URL, content, "text/html", "charset=UTF-8", null);
         }
 
         @Override
@@ -48,8 +48,8 @@ public class ChapterActivity extends BaseRefreshActivity {
         mHttpProxy = HttpProxy.getInstance(this);
 
         Bundle bundle = getIntent().getExtras();
-        url = bundle.getString(Consts.URL);
-        setTitle(bundle.getString(Consts.TITLE));
+        url = bundle.getString(Constants.URL);
+        setTitle(bundle.getString(Constants.TITLE));
         initView();
 
         requestContents();

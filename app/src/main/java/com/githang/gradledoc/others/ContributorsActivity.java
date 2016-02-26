@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.githang.android.snippet.adapter.BaseListAdapter;
-import com.githang.gradledoc.Consts;
+import com.githang.gradledoc.Constants;
 import com.githang.gradledoc.R;
 import com.githang.gradledoc.common.ListActivity;
 import com.githang.gradledoc.datasource.AbstractResponse;
@@ -48,13 +48,13 @@ public class ContributorsActivity extends ListActivity<Contributor> {
         super.onCreate(savedInstanceState);
 
         showProgressDialog();
-        HttpProxy.getInstance(this).requestUrl(this, Consts.URL_CONTRIBUTORS, mResponse);
+        HttpProxy.getInstance(this).requestUrl(this, Constants.URL_CONTRIBUTORS, mResponse);
     }
 
     @Override
     protected void onRefresh() {
         showProgressDialog();
-        HttpProxy.getInstance(this).forceRequestUrl(this, Consts.URL_CONTRIBUTORS, mResponse);
+        HttpProxy.getInstance(this).forceRequestUrl(this, Constants.URL_CONTRIBUTORS, mResponse);
     }
 
     @Override

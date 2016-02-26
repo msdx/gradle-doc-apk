@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-          android:id="@+id/text"
+<TextView android:id="@+id/text"
+          xmlns:android="http://schemas.android.com/apk/res/android"
           android:layout_width="match_parent"
+          android:layout_height="wrap_content"
           android:background="@drawable/item_contents_bg"
           android:gravity="center_vertical"
           android:padding="16dp"
-          android:layout_height="wrap_content">
+          android:shadowColor="@color/grey"
+          android:shadowDx="1"
+          android:shadowDy="1"
+          android:shadowRadius="3">
 
 </TextView>
