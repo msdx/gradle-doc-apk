@@ -1,4 +1,4 @@
-package com.githang.gradledoc.datasource;
+package com.githang.gradledoc.common;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -18,7 +18,7 @@ import java.util.Locale;
  */
 public class HttpDBCache extends SQLiteOpenHelper {
 
-    private static HttpDBCache instance;
+    private static volatile HttpDBCache instance;
 
     private static final int VERSION = 2;
     private static final String DB_NAME = "http_cache_db";
@@ -117,7 +117,11 @@ public class HttpDBCache extends SQLiteOpenHelper {
 
     public static synchronized HttpDBCache getInstance(Context context) {
         if (instance == null) {
-            instance = new HttpDBCache(context.getApplicationContext());
+            synchronized (HttpDBCache.class) {
+                if (instance == null) {
+                    instance = new HttpDBCache(context.getApplicationContext());
+                }
+            }
         }
         return instance;
     }
