@@ -77,16 +77,4 @@ public class ChapterActivity extends BaseRefreshActivity {
         showProgressDialog();
         mHttpProxy.forceRequestUrl(mContext, url, mChapterHandler);
     }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(mContext);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(mContext);
-    }
 }
