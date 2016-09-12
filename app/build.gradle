@@ -77,11 +77,12 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.6'
 }
 
+def token = hasProperty("token") ? getProperty("token") : ""
 
 apply plugin: 'fir'
 
 fir {
-    apiToken "f4786cd4c091c1f8e6f1f9688694aa38"
+    apiToken token
     bundleId android.defaultConfig.applicationId
     appName "Gradle 用户指南"
     icon "./app/src/main/res/drawable-xxhdpi/ic_launcher.png"

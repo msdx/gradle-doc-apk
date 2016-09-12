@@ -9,4 +9,4 @@ android:
     - extra-android-m2repository
 
 script:
-- if [ "$TRAVIS_BRANCH" = "master" ]; then ./gradlew firAll; else ./gradlew aR; fi
+- if [ "$TRAVIS_BRANCH" = "master" ]; then ./gradlew -Ptoken=f4786cd4c091c1f8e6f1f9688694aa38 firAll; else ./gradlew aR; fi
