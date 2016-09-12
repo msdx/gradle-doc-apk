@@ -77,7 +77,7 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.6'
 }
 
-def token = hasProperty("token") ? getProperty("token") : ""
+def token = hasProperty("FIR_TOKEN") ? getProperty("FIR_TOKEN") : ""
 
 apply plugin: 'fir'
 
