@@ -71,7 +71,7 @@ dependencies {
     // android代码片段库
     compile 'com.githang:androidsnippet:0.6'
     // 状态栏颜色
-    compile 'com.githang:status-bar-compat:0.3'
+    compile 'com.githang:status-bar-compat:0.4.1'
     // rxjava, rxandroid
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
