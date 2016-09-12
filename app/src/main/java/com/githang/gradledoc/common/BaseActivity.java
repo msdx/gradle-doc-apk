@@ -5,6 +5,7 @@ import android.support.annotation.LayoutRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.githang.gradledoc.R;
 import com.githang.statusbar.StatusBarCompat;
@@ -40,5 +41,15 @@ public class BaseActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        final int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

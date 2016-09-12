@@ -29,10 +29,7 @@ public abstract class BaseRefreshActivity<P extends Presenter, O> extends BaseAc
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         final int id = item.getItemId();
-        if (id == android.R.id.home) {
-            finish();
-            return true;
-        } else if (id == R.id.action_refresh) {
+        if (id == R.id.action_refresh) {
             onRefresh();
             return true;
         }
