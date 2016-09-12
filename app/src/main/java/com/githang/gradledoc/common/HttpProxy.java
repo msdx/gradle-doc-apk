@@ -2,12 +2,12 @@ package com.githang.gradledoc.common;
 
 import android.content.Context;
 
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 /**
  * User: Geek_Soledad(msdx.android@qq.com)
@@ -18,13 +18,11 @@ public class HttpProxy {
     private static final int TIMEOUT_SECOND = 15;
     private static final AtomicInteger TAG_GENERATOR = new AtomicInteger(0);
     private static HttpDBCache CACHE;
-    private static OkHttpClient HTTP_CLIENT = new OkHttpClient();
-
-    static {
-        HTTP_CLIENT.setConnectTimeout(TIMEOUT_SECOND, TimeUnit.SECONDS);
-        HTTP_CLIENT.setReadTimeout(TIMEOUT_SECOND, TimeUnit.SECONDS);
-        HTTP_CLIENT.setWriteTimeout(TIMEOUT_SECOND, TimeUnit.SECONDS);
-    }
+    private static OkHttpClient HTTP_CLIENT = new OkHttpClient.Builder()
+            .connectTimeout(TIMEOUT_SECOND, TimeUnit.SECONDS)
+            .readTimeout(TIMEOUT_SECOND, TimeUnit.SECONDS)
+            .writeTimeout(TIMEOUT_SECOND, TimeUnit.SECONDS)
+            .build();
 
     public static void init(HttpDBCache cache) {
         CACHE = cache;
