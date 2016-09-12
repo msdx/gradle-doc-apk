@@ -76,3 +76,13 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
 }
+
+
+apply plugin: 'fir'
+
+fir {
+    apiToken "f4786cd4c091c1f8e6f1f9688694aa38"
+    bundleId android.defaultConfig.applicationId
+    appName "Gradle 用户指南"
+    icon "./app/src/main/res/drawable-xxhdpi/ic_launcher.png"
+}
