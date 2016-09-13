@@ -10,8 +10,8 @@ android {
         applicationId "com.githang.gradledoc"
         minSdkVersion 9
         targetSdkVersion 22
-        versionCode 11
-        versionName "0.4"
+        versionCode "git rev-list HEAD --count".execute().text.trim().toInteger()
+        versionName "0.5"
     }
 
     compileOptions {
@@ -86,4 +86,5 @@ fir {
     bundleId android.defaultConfig.applicationId
     appName "Gradle 用户指南"
     icon "./app/src/main/res/drawable-xxhdpi/ic_launcher.png"
+    changeLog "内部重构，代码及界面优化"
 }
