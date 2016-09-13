@@ -2,11 +2,13 @@ package com.githang.gradledoc.common;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.githang.gradledoc.R;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
+import com.githang.statusbar.StatusBarCompat;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -16,12 +18,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SystemBarTintManager tintManager = new SystemBarTintManager(this);
-        // enable status bar tint
-        tintManager.setStatusBarTintEnabled(true);
-        tintManager.setNavigationBarTintEnabled(true);
-        // set a custom tint color for all system bars
-        tintManager.setTintColor(getResources().getColor(R.color.primary));
+        StatusBarCompat.setStatusBarColor(this, ActivityCompat.getColor(this, R.color.primary), false);
     }
 
     @Override
@@ -44,5 +41,15 @@ public class BaseActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        final int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

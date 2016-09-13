@@ -8,9 +8,10 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import com.githang.gradledoc.R;
+import com.githang.gradledoc.common.BaseActivity;
 import com.githang.gradledoc.common.BaseRefreshActivity;
 
-public class AboutActivity extends BaseRefreshActivity {
+public class AboutActivity extends BaseActivity {
     private TextView mVersion;
 
     @Override
@@ -25,20 +26,11 @@ public class AboutActivity extends BaseRefreshActivity {
         ApplicationInfo info = this.getApplicationInfo();
         mVersion.setText("版本: ");
         try {
-            PackageInfo packageInfo= getPackageManager().getPackageInfo(info.packageName, 0);
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(info.packageName, 0);
             mVersion.append(" V");
             mVersion.append(packageInfo.versionName);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return true;
-    }
-
-    @Override
-    protected void onRefresh() {
     }
 }

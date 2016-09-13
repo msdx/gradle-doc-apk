@@ -1,55 +1,35 @@
 package com.githang.gradledoc.common;
 
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.githang.gradledoc.R;
-import com.githang.gradledoc.datasource.HttpProxy;
 
 /**
  * User: Geek_Soledad(msdx.android@qq.com)
  * Date: 2014-12-03
  * Time: 21:59
  */
-public abstract class BaseRefreshActivity extends BaseActivity {
+public abstract class BaseRefreshActivity<P extends Presenter, O> extends BaseActivity implements View<P, O> {
     private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final Context context = this;
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setCanceledOnTouchOutside(false);
         mProgressDialog.setCancelable(true);
         mProgressDialog.setMessage(getString(R.string.loading));
-        mProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                HttpProxy.getInstance(context).cancelRequests(context);
-            }
-        });
-    }
-
-    protected void showProgressDialog() {
-        mProgressDialog.show();
-    }
-
-    protected void dismissProgressDialog() {
-        mProgressDialog.dismiss();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         final int id = item.getItemId();
-        if (id == android.R.id.home) {
-            finish();
-            return true;
-        } else if (id == R.id.action_refresh) {
+        if (id == R.id.action_refresh) {
             onRefresh();
             return true;
         }
@@ -63,4 +43,20 @@ public abstract class BaseRefreshActivity extends BaseActivity {
     }
 
     protected abstract void onRefresh();
+
+    @Override
+    public void showProgressDialog() {
+        mProgressDialog.show();
+    }
+
+    @Override
+    public void dismissProgressDialog() {
+        mProgressDialog.dismiss();
+    }
+
+
+    @Override
+    public void showToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
 }

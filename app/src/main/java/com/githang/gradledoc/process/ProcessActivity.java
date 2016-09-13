@@ -1,55 +1,26 @@
 package com.githang.gradledoc.process;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.githang.android.snippet.adapter.BaseListAdapter;
+import com.githang.gradledoc.Constants;
 import com.githang.gradledoc.R;
 import com.githang.gradledoc.common.ListActivity;
-import com.githang.gradledoc.datasource.HttpProxy;
 
-import java.util.List;
-
-public class ProcessActivity extends ListActivity<Commit> {
-    private static final String URL_PROCESS = "https://github.com/msdx/gradledoc/commits/1.12";
-    private Context mContext;
-
-    private ProcessHandler mProcessHandler = new ProcessHandler() {
-        @Override
-        public void onResult(final List<Commit> commits) {
-            update(commits);
-        }
-
-        @Override
-        public void onUIFinish() {
-            dismissProgressDialog();
-        }
-
-        @Override
-        public void onUIFailed(Throwable e) {
-            Toast.makeText(mContext, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    };
+public class ProcessActivity extends ListActivity<Commit, ProcessPresenter> {
+    private ProcessPresenter<ProcessActivity> mPresenter = new ProcessPresenter<>(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mContext = this;
         super.onCreate(savedInstanceState);
-
-        showProgressDialog();
-        boolean isCache = HttpProxy.getInstance(this).requestUrl(this, URL_PROCESS, mProcessHandler);
-        if(isCache) {
-            onRefresh();
-        }
+        mPresenter.request(this, Constants.URL_PROCESS);
     }
 
     @Override
     protected void onRefresh() {
-        showProgressDialog();
-        HttpProxy.getInstance(this).forceRequestUrl(mContext, URL_PROCESS, mProcessHandler);
+        mPresenter.forceRequest(this, Constants.URL_PROCESS);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.githang.gradledoc.contents;
 
-import com.githang.gradledoc.datasource.AbstractResponse;
+import com.githang.gradledoc.common.Presenter;
+import com.githang.gradledoc.common.View;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -11,15 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 目录。
- * User: Geek_Soledad(msdx.android@qq.com)
- * Date: 2014-11-29
- * Time: 13:03
+ * @author 黄浩杭 (huanghaohang@parkingwang.com)
+ * @version 2016-09-11
+ * @since 2016-09-11
  */
-public abstract class ContentsHandler extends AbstractResponse {
+class ContentPresenter<V extends View<ContentPresenter, List<ChapterUrl>>> extends Presenter.Base<List<ChapterUrl>, V> {
+    ContentPresenter(V view) {
+        super(view);
+    }
+
     @Override
-    public void onUISuccess(String response) {
-        Document doc = Jsoup.parse(response);
+    public List<ChapterUrl> handleContent(String content) {
+        Document doc = Jsoup.parse(content);
         Elements elements = doc.select("span.chapter");
         List<ChapterUrl> chapterUrls = new ArrayList<>();
         for (Element elem : elements) {
@@ -28,8 +32,6 @@ public abstract class ContentsHandler extends AbstractResponse {
             url.setTitle(elem.text());
             chapterUrls.add(url);
         }
-        onResult(chapterUrls);
+        return chapterUrls;
     }
-
-    public abstract void onResult(List<ChapterUrl> chapterUrls);
 }

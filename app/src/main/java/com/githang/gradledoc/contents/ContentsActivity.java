@@ -1,6 +1,5 @@
 package com.githang.gradledoc.contents;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,21 +7,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.githang.android.snippet.adapter.BaseListAdapter;
 import com.githang.gradledoc.Constants;
 import com.githang.gradledoc.R;
 import com.githang.gradledoc.chapter.ChapterActivity;
 import com.githang.gradledoc.common.ListActivity;
-import com.githang.gradledoc.datasource.HttpProxy;
 import com.githang.gradledoc.others.AboutActivity;
 import com.githang.gradledoc.others.ContributorsActivity;
 import com.githang.gradledoc.process.ProcessActivity;
 import com.umeng.update.UmengUpdateAgent;
-
-import java.util.List;
 
 
 /**
@@ -30,43 +24,18 @@ import java.util.List;
  *
  * @author Geek_Soledad (msdx.android@qq.com)
  */
-public class ContentsActivity extends ListActivity<ChapterUrl> {
-    private HttpProxy mHttpProxy;
-    private Context mContext;
-    private ContentsHandler mContentsHandler = new ContentsHandler() {
-        @Override
-        public void onResult(List<ChapterUrl> chapterUrls) {
-            update(chapterUrls);
-        }
-
-        @Override
-        public void onUIFailed(Throwable e) {
-            Toast.makeText(mContext, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onUIFinish() {
-            dismissProgressDialog();
-        }
-    };
+public class ContentsActivity extends ListActivity<ChapterUrl, ContentPresenter> {
+    private ContentPresenter<ContentsActivity> mPresenter = new ContentPresenter<>(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext = this;
-        mHttpProxy = HttpProxy.getInstance(this);
         setTitle(R.string.app_title);
-
-        requestContents();
+        mPresenter.request(this, Constants.USER_GUIDE);
 
         UmengUpdateAgent.setUpdateAutoPopup(true);
         UmengUpdateAgent.setUpdateOnlyWifi(false);
         UmengUpdateAgent.update(this);
-    }
-
-    private void requestContents() {
-        showProgressDialog();
-        HttpProxy.getInstance(this).requestUrl(this, Constants.USER_GUIDE, mContentsHandler);
     }
 
     @Override
@@ -77,8 +46,8 @@ public class ContentsActivity extends ListActivity<ChapterUrl> {
     }
 
     @Override
-    @SuppressWarnings("unused")
     protected void onRefresh() {
+        mPresenter.forceRequest(this, Constants.USER_GUIDE);
     }
 
     @Override
@@ -90,18 +59,14 @@ public class ContentsActivity extends ListActivity<ChapterUrl> {
 
         //noinspection SimplifiableIfStatement
         switch (id) {
-            case R.id.action_refresh:
-                showProgressDialog();
-                mHttpProxy.forceRequestUrl(mContext, Constants.USER_GUIDE, mContentsHandler);
-                return true;
             case R.id.action_about:
-                startActivity(new Intent(mContext, AboutActivity.class));
+                startActivity(new Intent(this, AboutActivity.class));
                 return true;
             case R.id.action_process:
-                startActivity(new Intent(mContext, ProcessActivity.class));
+                startActivity(new Intent(this, ProcessActivity.class));
                 return true;
             case R.id.action_contributors:
-                startActivity(new Intent(mContext, ContributorsActivity.class));
+                startActivity(new Intent(this, ContributorsActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -124,7 +89,7 @@ public class ContentsActivity extends ListActivity<ChapterUrl> {
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ChapterUrl chapterUrl = (ChapterUrl) parent.getAdapter().getItem(position);
-        Intent intent = new Intent(mContext, ChapterActivity.class);
+        Intent intent = new Intent(this, ChapterActivity.class);
         intent.putExtra(Constants.TITLE, chapterUrl.getTitle());
         intent.putExtra(Constants.URL, Constants.BASE_URL + chapterUrl.getUrl());
         startActivity(intent);

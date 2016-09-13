@@ -17,7 +17,7 @@ import java.util.List;
  * @version 2015-12-03
  * @since 2015-12-03
  */
-public abstract class ListActivity<T> extends BaseRefreshActivity implements BaseListAdapter.ItemCreator<T>, AdapterView.OnItemClickListener {
+public abstract class ListActivity<T, P extends Presenter> extends BaseRefreshActivity<P, List<T>> implements BaseListAdapter.ItemCreator<T>, AdapterView.OnItemClickListener {
     private ListView mListView;
     private BaseListAdapter<T> mAdapter;
 
@@ -37,5 +37,10 @@ public abstract class ListActivity<T> extends BaseRefreshActivity implements Bas
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    }
+
+    @Override
+    public void onHandle(List<T> list) {
+        update(list);
     }
 }

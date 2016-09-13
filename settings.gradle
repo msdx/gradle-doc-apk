@@ -1,1 +1,1 @@
-include ':app'//, ':libraries:htmltextview'
+include ':app'
