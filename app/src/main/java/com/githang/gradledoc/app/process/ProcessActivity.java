@@ -20,7 +20,7 @@ public class ProcessActivity extends ListActivity<Commit, ProcessPresenter> {
 
     @Override
     protected void onRefresh() {
-        mPresenter.forceRequest(this, Constants.URL_PROCESS);
+        mPresenter.request(this, Constants.URL_PROCESS, true);
     }
 
     @Override

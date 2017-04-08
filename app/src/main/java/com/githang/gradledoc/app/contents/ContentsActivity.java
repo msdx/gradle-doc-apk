@@ -47,7 +47,7 @@ public class ContentsActivity extends ListActivity<ChapterUrl, ContentPresenter>
 
     @Override
     protected void onRefresh() {
-        mPresenter.forceRequest(this, Constants.USER_GUIDE);
+        mPresenter.request(this, Constants.USER_GUIDE, true);
     }
 
     @Override

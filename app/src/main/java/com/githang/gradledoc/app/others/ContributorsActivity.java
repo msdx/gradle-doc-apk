@@ -31,7 +31,7 @@ public class ContributorsActivity extends ListActivity<Contributor, Contributors
     @Override
     protected void onRefresh() {
         showProgressDialog();
-        mPresenter.forceRequest(this, Constants.URL_CONTRIBUTORS);
+        mPresenter.request(this, Constants.URL_CONTRIBUTORS, true);
     }
 
     @Override

@@ -47,7 +47,7 @@ public class ChapterActivity extends BaseRefreshActivity<ChapterPresenter, Strin
 
     @Override
     protected void onRefresh() {
-        mPresenter.forceRequest(this, mUrl);
+        mPresenter.request(this, mUrl, true);
     }
 
     @Override
