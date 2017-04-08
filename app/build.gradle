@@ -77,14 +77,15 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.6'
 }
 
-def token = hasProperty("FIR_TOKEN") ? getProperty("FIR_TOKEN") : ""
+if (hasProperty("FIR_TOKEN")) {
+    def cmd = ['git', 'show', '-s', '--format=[%ai] %s', '--no-merges', '-n', '10']
+    apply plugin: 'fir'
 
-apply plugin: 'fir'
-
-fir {
-    apiToken token
-    bundleId android.defaultConfig.applicationId
-    appName "Gradle 用户指南"
-    icon "./app/src/main/res/drawable-xxhdpi/ic_launcher.png"
-    changeLog "内部重构，代码及界面优化"
+    fir {
+        apiToken getProperty("FIR_TOKEN")
+        bundleId android.defaultConfig.applicationId
+        appName "Gradle 用户指南"
+        icon "./app/src/main/res/drawable-xxhdpi/ic_launcher.png"
+        changeLog cmd.execute().text
+    }
 }
