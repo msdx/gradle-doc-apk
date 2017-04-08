@@ -1,15 +1,13 @@
-package com.githang.gradledoc.others;
+package com.githang.gradledoc.app.others;
 
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.view.Menu;
 import android.widget.TextView;
 
 import com.githang.gradledoc.R;
 import com.githang.gradledoc.common.BaseActivity;
-import com.githang.gradledoc.common.BaseRefreshActivity;
 
 public class AboutActivity extends BaseActivity {
     private TextView mVersion;

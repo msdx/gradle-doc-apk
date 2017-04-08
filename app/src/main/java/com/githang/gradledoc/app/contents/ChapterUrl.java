@@ -1,4 +1,4 @@
-package com.githang.gradledoc.contents;
+package com.githang.gradledoc.app.contents;
 
 /**
  * 目录中的章节名称及名字

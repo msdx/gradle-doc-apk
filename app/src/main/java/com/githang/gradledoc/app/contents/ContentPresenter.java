@@ -1,4 +1,4 @@
-package com.githang.gradledoc.contents;
+package com.githang.gradledoc.app.contents;
 
 import com.githang.gradledoc.common.Presenter;
 import com.githang.gradledoc.common.View;

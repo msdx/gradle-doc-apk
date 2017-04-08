@@ -1,4 +1,4 @@
-package com.githang.gradledoc.contents;
+package com.githang.gradledoc.app.contents;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +11,11 @@ import android.widget.AdapterView;
 import com.githang.android.snippet.adapter.BaseListAdapter;
 import com.githang.gradledoc.Constants;
 import com.githang.gradledoc.R;
-import com.githang.gradledoc.chapter.ChapterActivity;
+import com.githang.gradledoc.app.chapter.ChapterActivity;
 import com.githang.gradledoc.common.ListActivity;
-import com.githang.gradledoc.others.AboutActivity;
-import com.githang.gradledoc.others.ContributorsActivity;
-import com.githang.gradledoc.process.ProcessActivity;
+import com.githang.gradledoc.app.others.AboutActivity;
+import com.githang.gradledoc.app.others.ContributorsActivity;
+import com.githang.gradledoc.app.process.ProcessActivity;
 import com.umeng.update.UmengUpdateAgent;
 
 

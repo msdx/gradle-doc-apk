@@ -1,4 +1,4 @@
-package com.githang.gradledoc.chapter;
+package com.githang.gradledoc.app.chapter;
 
 import android.os.Build;
 import android.os.Bundle;

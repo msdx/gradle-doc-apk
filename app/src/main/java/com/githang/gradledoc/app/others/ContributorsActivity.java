@@ -1,4 +1,4 @@
-package com.githang.gradledoc.others;
+package com.githang.gradledoc.app.others;
 
 import android.os.Bundle;
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.githang.gradledoc.process;
+package com.githang.gradledoc.app.process;
 
 import com.githang.gradledoc.common.Presenter;
 import com.githang.gradledoc.common.View;

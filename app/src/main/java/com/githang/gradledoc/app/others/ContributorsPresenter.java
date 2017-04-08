@@ -1,4 +1,4 @@
-package com.githang.gradledoc.others;
+package com.githang.gradledoc.app.others;
 
 import com.alibaba.fastjson.JSON;
 import com.githang.gradledoc.common.Presenter;
