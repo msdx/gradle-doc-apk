@@ -10,7 +10,7 @@ android {
         applicationId "com.githang.gradledoc"
         minSdkVersion 9
         targetSdkVersion 22
-        versionCode "git rev-list --no-merges HEAD --count".execute().text.trim().toInteger()
+        versionCode "git rev-list HEAD --count".execute().text.trim().toInteger()
         versionName "0.6-dev"
         buildConfigField "String", "REVISION", '"' +  "git rev-parse --short HEAD".execute().text.trim() + '"'
     }
