@@ -9,4 +9,4 @@ android:
     - extra-android-m2repository
 
 script:
-- if [ "$TRAVIS_BRANCH" = "master" ] || [  "$TRAVIS_BRANCH" = "develop" ] ; then ./gradlew -PFIR_TOKEN=${FIR_TOKEN} firAll ; else ./gradlew aR; fi
+- if [ "$TRAVIS_BRANCH" = "master" ] || [  "$TRAVIS_BRANCH" = "develop" ] ; then ./gradlew -PFIR_TOKEN=${FIR_TOKEN} aR ; else ./gradlew aR; fi
