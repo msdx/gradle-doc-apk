@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.0-rc2'
+        classpath 'com.android.tools.build:gradle:2.3.0'
         classpath 'com.githang:fir:0.1.4'
     }
 }
@@ -15,6 +15,5 @@ allprojects {
         jcenter()
         mavenCentral()
         maven {url 'https://dl.bintray.com/msdx/maven'}
-//        maven { url "http://oss.jfrog.org/oss-snapshot-local/" }
     }
 }
