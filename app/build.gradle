@@ -38,10 +38,19 @@ android {
         }
     }
 
+    flavorDimensions "channel"
+    productFlavors {
+        Fir {}
+        Google {}
+    }
+    productFlavors.all { flavor ->
+        flavor.dimension "channel"
+        manifestPlaceholders = [ CHANNEL: flavor.name]
+    }
+
     android.applicationVariants.all { variant ->
         if(variant.buildType.name == 'release') {
             variant.outputs.all { output ->
-                def file = output.outputFile
                 outputFileName = "GradleUserGuide-${defaultConfig.versionName}-${variant.name}.apk"
             }
         }
@@ -81,7 +90,7 @@ if (hasProperty("FIR_TOKEN")) {
     apply plugin: 'fir'
 
     fir {
-        apiToken getProperty("FIR_TOKEN")
+        apiTokens([Fir: getProperty("FIR_TOKEN")])
         changeLog cmd.execute().text
         upload true
     }
