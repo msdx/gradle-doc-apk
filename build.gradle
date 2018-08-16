@@ -3,15 +3,17 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
-        classpath 'com.githang:fir:0.4.2'
+        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'com.githang:fir:0.5'
     }
 }
 
 allprojects {
     repositories {
+        google()
         jcenter()
         mavenCentral()
         maven {url 'https://dl.bintray.com/msdx/maven'}
