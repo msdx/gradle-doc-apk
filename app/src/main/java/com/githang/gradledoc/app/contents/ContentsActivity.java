@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.githang.android.snippet.adapter.BaseListAdapter;
+import com.githang.android.snippet.adapter.ItemHolder;
 import com.githang.gradledoc.Constants;
 import com.githang.gradledoc.R;
 import com.githang.gradledoc.app.chapter.ChapterActivity;
@@ -75,14 +76,14 @@ public class ContentsActivity extends ListActivity<ChapterUrl, ContentPresenter>
     }
 
     @Override
-    public BaseListAdapter.Holder createHolder(int position, ViewGroup parent) {
-        BaseListAdapter.Holder holder = new BaseListAdapter.Holder(View.inflate(this, R.layout.item_contents, null));
+    public ItemHolder.DefaultHolder createHolder(int position, ViewGroup parent) {
+        ItemHolder.DefaultHolder holder = new ItemHolder.DefaultHolder(View.inflate(this, R.layout.item_contents, null));
         holder.hold(R.id.text);
         return holder;
     }
 
     @Override
-    public void bindData(int position, BaseListAdapter.Holder holder, ChapterUrl data) {
+    public void bindData(int position, ItemHolder.DefaultHolder holder, ChapterUrl data) {
         holder.setText(R.id.text, data.getTitle());
     }
 
