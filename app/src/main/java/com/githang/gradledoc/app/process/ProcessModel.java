@@ -1,7 +1,6 @@
-package com.githang.gradledoc.process;
+package com.githang.gradledoc.app.process;
 
-import com.githang.gradledoc.common.Presenter;
-import com.githang.gradledoc.common.View;
+import com.githang.gradledoc.common.Model;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -13,14 +12,11 @@ import java.util.List;
 
 /**
  * @author 黄浩杭 (huanghaohang@parkingwang.com)
- * @version 2016-09-11
- * @since 2016-09-11
+ * @version 2017-04-08
+ * @since 2017-04-08
  */
-class ProcessPresenter<V extends View<ProcessPresenter, List<Commit>>> extends Presenter.Base<List<Commit>, V> {
-    ProcessPresenter(V view) {
-        super(view);
-    }
 
+class ProcessModel extends Model<List<Commit>> {
     @Override
     public List<Commit> handleContent(String content) {
         Document doc = Jsoup.parse(content);

@@ -1,7 +1,6 @@
 package com.githang.gradledoc.common;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.io.IOException;
 
@@ -21,15 +20,15 @@ public interface Presenter<O, V extends View<? extends Presenter, O>> {
 
     void request(Context context, String url);
 
-    void forceRequest(Context context, String url);
-
-    O handleContent(String content);
+    void request(Context context, String url, boolean forceRefresh);
 
     abstract class Base<O, V extends View<? extends Base, O>> implements Presenter<O, V> {
-        private V mView;
+        private final V mView;
+        private final Model<O> mModel;
 
-        public Base(V view) {
+        public Base(V view, Model<O> model) {
             mView = view;
+            mModel = model;
         }
 
         @Override
@@ -38,49 +37,23 @@ public interface Presenter<O, V extends View<? extends Presenter, O>> {
         }
 
         public void request(final Context context, final String url) {
-            getView().showProgressDialog();
-            Observable.create(new Observable.OnSubscribe<O>() {
-                @Override
-                public void call(Subscriber<? super O> subscriber) {
-                    Log.e("request:", Thread.currentThread().getName() + " call");
-                    String content = HttpProxy.loadFromCache(url);
-                    if (content != null) {
-                        subscriber.onNext(handleContent(content));
-                        return;
-                    }
-                    try {
-                        content = HttpProxy.loadFromNetwork(context, url);
-                        subscriber.onNext(handleContent(content));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            })
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Action1<O>() {
-                        @Override
-                        public void call(O o) {
-                            getView().onHandle(o);
-                            getView().dismissProgressDialog();
-                        }
-                    }, new Action1<Throwable>() {
-                        @Override
-                        public void call(Throwable throwable) {
-                            throwable.printStackTrace();
-                            getView().showToast(throwable.getMessage());
-                        }
-                    });
+            this.request(context, url, false);
         }
 
-        public void forceRequest(final Context context, final String url) {
+        public void request(final Context context, final String url, final boolean forceRefresh) {
             getView().showProgressDialog();
             Observable.create(new Observable.OnSubscribe<O>() {
                 @Override
                 public void call(Subscriber<? super O> subscriber) {
                     try {
-                        String content = HttpProxy.loadFromNetwork(context, url);
-                        subscriber.onNext(handleContent(content));
+                        String content = null;
+                        if (!forceRefresh) {
+                            content = mModel.requestFromCache(url);
+                        }
+                        if (content == null) {
+                            content = mModel.requestFromNetwork(url);
+                        }
+                        subscriber.onNext(mModel.handleContent(content));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

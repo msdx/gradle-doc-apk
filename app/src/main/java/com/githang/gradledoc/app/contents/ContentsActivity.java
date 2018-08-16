@@ -1,4 +1,4 @@
-package com.githang.gradledoc.contents;
+package com.githang.gradledoc.app.contents;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,13 +9,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.githang.android.snippet.adapter.BaseListAdapter;
+import com.githang.android.snippet.adapter.ItemHolder;
 import com.githang.gradledoc.Constants;
 import com.githang.gradledoc.R;
-import com.githang.gradledoc.chapter.ChapterActivity;
+import com.githang.gradledoc.app.chapter.ChapterActivity;
 import com.githang.gradledoc.common.ListActivity;
-import com.githang.gradledoc.others.AboutActivity;
-import com.githang.gradledoc.others.ContributorsActivity;
-import com.githang.gradledoc.process.ProcessActivity;
+import com.githang.gradledoc.app.others.AboutActivity;
+import com.githang.gradledoc.app.others.ContributorsActivity;
+import com.githang.gradledoc.app.process.ProcessActivity;
 import com.umeng.update.UmengUpdateAgent;
 
 
@@ -47,7 +48,7 @@ public class ContentsActivity extends ListActivity<ChapterUrl, ContentPresenter>
 
     @Override
     protected void onRefresh() {
-        mPresenter.forceRequest(this, Constants.USER_GUIDE);
+        mPresenter.request(this, Constants.USER_GUIDE, true);
     }
 
     @Override
@@ -75,14 +76,14 @@ public class ContentsActivity extends ListActivity<ChapterUrl, ContentPresenter>
     }
 
     @Override
-    public BaseListAdapter.Holder createHolder(int position, ViewGroup parent) {
-        BaseListAdapter.Holder holder = new BaseListAdapter.Holder(View.inflate(this, R.layout.item_contents, null));
+    public ItemHolder.DefaultHolder createHolder(int position, ViewGroup parent) {
+        ItemHolder.DefaultHolder holder = new ItemHolder.DefaultHolder(View.inflate(this, R.layout.item_contents, null));
         holder.hold(R.id.text);
         return holder;
     }
 
     @Override
-    public void bindData(int position, BaseListAdapter.Holder holder, ChapterUrl data) {
+    public void bindData(int position, ItemHolder.DefaultHolder holder, ChapterUrl data) {
         holder.setText(R.id.text, data.getTitle());
     }
 

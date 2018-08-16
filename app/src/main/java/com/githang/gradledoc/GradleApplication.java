@@ -4,8 +4,7 @@ import android.app.Application;
 import android.graphics.Bitmap;
 
 import com.githang.gradledoc.common.HttpDBCache;
-import com.githang.gradledoc.common.HttpProxy;
-import com.nostra13.universalimageloader.cache.disc.impl.ext.LruDiscCache;
+import com.nostra13.universalimageloader.cache.disc.impl.ext.LruDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -29,12 +28,12 @@ public class GradleApplication extends Application {
     }
 
     private void initImageLoader() {
-        HttpProxy.init(HttpDBCache.getInstance(this));
+        HttpDBCache.init(this);
         try {
             DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true)
                     .cacheOnDisk(true).bitmapConfig(Bitmap.Config.RGB_565).build();
             ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
-                    .diskCache(new LruDiscCache(getCacheDir(),
+                    .diskCache(new LruDiskCache(getCacheDir(),
                             new Md5FileNameGenerator(), 20 * 1024 * 1024))
                     .memoryCache(new LruMemoryCache(8 * 1024 * 1024))
                     .defaultDisplayImageOptions(options).build();

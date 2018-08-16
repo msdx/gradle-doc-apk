@@ -1,4 +1,4 @@
-package com.githang.gradledoc.chapter;
+package com.githang.gradledoc.app.chapter;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -47,7 +47,7 @@ public class ChapterActivity extends BaseRefreshActivity<ChapterPresenter, Strin
 
     @Override
     protected void onRefresh() {
-        mPresenter.forceRequest(this, mUrl);
+        mPresenter.request(this, mUrl, true);
     }
 
     @Override

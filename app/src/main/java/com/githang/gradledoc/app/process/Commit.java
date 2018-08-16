@@ -1,4 +1,4 @@
-package com.githang.gradledoc.process;
+package com.githang.gradledoc.app.process;
 
 /**
  * User: Geek_Soledad(msdx.android@qq.com)

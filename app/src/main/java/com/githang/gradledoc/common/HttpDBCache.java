@@ -115,14 +115,11 @@ public class HttpDBCache extends SQLiteOpenHelper {
 //        return null;
 //    }
 
-    public static synchronized HttpDBCache getInstance(Context context) {
-        if (instance == null) {
-            synchronized (HttpDBCache.class) {
-                if (instance == null) {
-                    instance = new HttpDBCache(context.getApplicationContext());
-                }
-            }
-        }
+    public static void init(Context context) {
+        instance = new HttpDBCache(context.getApplicationContext());
+    }
+
+    public static HttpDBCache get() {
         return instance;
     }
 }

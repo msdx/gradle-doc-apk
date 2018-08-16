@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.githang.gradledoc.contents.ContentsActivity"
+            android:name=".app.contents.ContentsActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -23,25 +23,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.githang.gradledoc.chapter.ChapterActivity"
+            android:name=".app.chapter.ChapterActivity"
             android:label="@string/title_activity_chapter">
         </activity>
         <activity
-            android:name="com.githang.gradledoc.others.AboutActivity"
+            android:name=".app.others.AboutActivity"
             android:label="@string/title_activity_about">
         </activity>
         <activity
-            android:name=".process.ProcessActivity"
+            android:name=".app.process.ProcessActivity"
             android:label="@string/title_activity_process"
             />
         <activity
-            android:name=".others.ContributorsActivity"
+            android:name=".app.others.ContributorsActivity"
             android:label="@string/action_contributors"
             />
 
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="NEW_SIGN"/>
+            android:value="${CHANNEL}"/>
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="547a80f6fd98c523b10017c1"/>

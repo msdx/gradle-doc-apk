@@ -4,9 +4,9 @@ jdk:
 android:
   components:
     - tools
-    - build-tools-24.0.2
-    - android-24
+    - build-tools-27.0.3
+    - android-27
     - extra-android-m2repository
 
 script:
-- if [ "$TRAVIS_BRANCH" = "master" ]; then ./gradlew -PFIR_TOKEN=${FIR_TOKEN} firAll; else ./gradlew aR; fi
+- if [ "$TRAVIS_BRANCH" = "master" ] || [  "$TRAVIS_BRANCH" = "develop" ] ; then ./gradlew -PFIR_TOKEN=${FIR_TOKEN} aR ; else ./gradlew aR; fi

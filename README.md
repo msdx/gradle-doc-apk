@@ -1,6 +1,6 @@
 # Gradle用户指南
 
-[![Build Status](https://travis-ci.org/msdx/gradle-doc-apk.svg?branch=develop)](https://travis-ci.org/msdx/gradle-doc-apk)
+[![Build Status](https://travis-ci.org/msdx/gradle-doc-apk.svg?branch=master)](https://travis-ci.org/msdx/gradle-doc-apk)
 
 Gradle UserGuide apk，支持 android 2.2以上。
 

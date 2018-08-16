@@ -1,7 +1,6 @@
-package com.githang.gradledoc.contents;
+package com.githang.gradledoc.app.contents;
 
-import com.githang.gradledoc.common.Presenter;
-import com.githang.gradledoc.common.View;
+import com.githang.gradledoc.common.Model;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -13,14 +12,11 @@ import java.util.List;
 
 /**
  * @author 黄浩杭 (huanghaohang@parkingwang.com)
- * @version 2016-09-11
- * @since 2016-09-11
+ * @version 2017-04-08
+ * @since 2017-04-08
  */
-class ContentPresenter<V extends View<ContentPresenter, List<ChapterUrl>>> extends Presenter.Base<List<ChapterUrl>, V> {
-    ContentPresenter(V view) {
-        super(view);
-    }
 
+class ChapterUrlModel extends Model<List<ChapterUrl>> {
     @Override
     public List<ChapterUrl> handleContent(String content) {
         Document doc = Jsoup.parse(content);

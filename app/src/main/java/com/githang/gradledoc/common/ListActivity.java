@@ -6,6 +6,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.githang.android.snippet.adapter.BaseListAdapter;
+import com.githang.android.snippet.adapter.ItemCreator;
+import com.githang.android.snippet.adapter.ItemHolder;
 import com.githang.gradledoc.R;
 
 import java.util.List;
@@ -17,9 +19,9 @@ import java.util.List;
  * @version 2015-12-03
  * @since 2015-12-03
  */
-public abstract class ListActivity<T, P extends Presenter> extends BaseRefreshActivity<P, List<T>> implements BaseListAdapter.ItemCreator<T>, AdapterView.OnItemClickListener {
+public abstract class ListActivity<T, P extends Presenter> extends BaseRefreshActivity<P, List<T>> implements ItemCreator<T, ItemHolder.DefaultHolder>, AdapterView.OnItemClickListener {
     private ListView mListView;
-    private BaseListAdapter<T> mAdapter;
+    private BaseListAdapter<T, ItemHolder.DefaultHolder> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
