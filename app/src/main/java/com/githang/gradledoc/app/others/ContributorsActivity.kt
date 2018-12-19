@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-
 import com.githang.android.snippet.adapter.ItemHolder
 import com.githang.gradledoc.Constants
 import com.githang.gradledoc.R
+import com.githang.gradledoc.common.ImageLoader
 import com.githang.gradledoc.common.ListActivity
-import com.nostra13.universalimageloader.core.ImageLoader
 
 /**
  * 贡献。
@@ -42,6 +41,6 @@ class ContributorsActivity : ListActivity<Contributor>() {
         holder.setText(R.id.name, data.name)
         holder.setText(R.id.contributions, data.contributions.toString() + " contributions")
         val imageView = holder.get<ImageView>(R.id.avatar)
-        ImageLoader.getInstance().displayImage(data.avatar, imageView)
+        ImageLoader.loadImage(data.avatar, imageView)
     }
 }
