@@ -1,5 +1,7 @@
 package com.githang.gradledoc.common;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v4.app.ActivityCompat;
@@ -51,5 +53,9 @@ public class BaseActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void startActivity(Class<? extends Activity> cls) {
+        startActivity(new Intent(this, cls));
     }
 }
