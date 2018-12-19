@@ -9,8 +9,8 @@ android {
         applicationId "com.githang.gradledoc"
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 601
-        versionName "0.6.1"
+        versionCode 10000
+        versionName "1.0-dev"
         buildConfigField "String", "REVISION", '"' +  "git rev-parse --short HEAD".execute().text.trim() + '"'
     }
 
