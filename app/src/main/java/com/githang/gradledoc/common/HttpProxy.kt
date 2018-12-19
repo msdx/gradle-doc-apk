@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger
 object HttpProxy {
     private const val TIMEOUT_SECOND = 15
     private val TAG_GENERATOR = AtomicInteger(0)
-    private val HTTP_CLIENT = OkHttpClient.Builder()
+    val HTTP_CLIENT: OkHttpClient = OkHttpClient.Builder()
             .connectTimeout(TIMEOUT_SECOND.toLong(), TimeUnit.SECONDS)
             .readTimeout(TIMEOUT_SECOND.toLong(), TimeUnit.SECONDS)
             .writeTimeout(TIMEOUT_SECOND.toLong(), TimeUnit.SECONDS)
