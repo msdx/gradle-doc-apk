@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.githang.android.snippet.adapter.BaseListAdapter;
 import com.githang.android.snippet.adapter.ItemHolder;
 import com.githang.gradledoc.Constants;
 import com.githang.gradledoc.R;
@@ -19,7 +18,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
  * @version 2015-12-02
  * @since 2015-12-02
  */
-public class ContributorsActivity extends ListActivity<Contributor, ContributorsPresenter> {
+public class ContributorsActivity extends ListActivity<Contributor> {
 
     private ContributorsPresenter<ContributorsActivity> mPresenter = new ContributorsPresenter<>(this);
 

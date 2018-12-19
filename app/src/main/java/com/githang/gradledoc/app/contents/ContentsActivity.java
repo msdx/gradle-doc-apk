@@ -8,15 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
-import com.githang.android.snippet.adapter.BaseListAdapter;
 import com.githang.android.snippet.adapter.ItemHolder;
 import com.githang.gradledoc.Constants;
 import com.githang.gradledoc.R;
 import com.githang.gradledoc.app.chapter.ChapterActivity;
-import com.githang.gradledoc.common.ListActivity;
 import com.githang.gradledoc.app.others.AboutActivity;
 import com.githang.gradledoc.app.others.ContributorsActivity;
 import com.githang.gradledoc.app.process.ProcessActivity;
+import com.githang.gradledoc.common.ListActivity;
 import com.umeng.update.UmengUpdateAgent;
 
 
@@ -25,7 +24,7 @@ import com.umeng.update.UmengUpdateAgent;
  *
  * @author Geek_Soledad (msdx.android@qq.com)
  */
-public class ContentsActivity extends ListActivity<ChapterUrl, ContentPresenter> {
+public class ContentsActivity extends ListActivity<ChapterUrl> {
     private ContentPresenter<ContentsActivity> mPresenter = new ContentPresenter<>(this);
 
     @Override

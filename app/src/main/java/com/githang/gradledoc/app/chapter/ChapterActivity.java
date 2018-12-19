@@ -13,7 +13,7 @@ import com.githang.gradledoc.common.BaseRefreshActivity;
  * @author Geek_Soledad (msdx.android@qq.com)
  *         文章内容
  */
-public class ChapterActivity extends BaseRefreshActivity<ChapterPresenter, String> {
+public class ChapterActivity extends BaseRefreshActivity<String> {
     private String mUrl;
 
     private WebView mDocView;

@@ -10,7 +10,7 @@ import java.util.List;
  * @version 2016-09-11
  * @since 2016-09-11
  */
-class ContributorsPresenter<V extends View<ContributorsPresenter, List<Contributor>>> extends Presenter.Base<List<Contributor>, V> {
+class ContributorsPresenter<V extends View<List<Contributor>>> extends Presenter.Base<List<Contributor>, V> {
     ContributorsPresenter(V view) {
         super(view, new ContributorModel());
     }

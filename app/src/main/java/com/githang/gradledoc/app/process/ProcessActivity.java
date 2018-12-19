@@ -4,13 +4,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.githang.android.snippet.adapter.BaseListAdapter;
 import com.githang.android.snippet.adapter.ItemHolder;
 import com.githang.gradledoc.Constants;
 import com.githang.gradledoc.R;
 import com.githang.gradledoc.common.ListActivity;
 
-public class ProcessActivity extends ListActivity<Commit, ProcessPresenter> {
+public class ProcessActivity extends ListActivity<Commit> {
     private ProcessPresenter<ProcessActivity> mPresenter = new ProcessPresenter<>(this);
 
     @Override

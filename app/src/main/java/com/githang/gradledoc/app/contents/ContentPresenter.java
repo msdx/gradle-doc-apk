@@ -10,7 +10,7 @@ import java.util.List;
  * @version 2016-09-11
  * @since 2016-09-11
  */
-class ContentPresenter<V extends View<ContentPresenter, List<ChapterUrl>>> extends Presenter.Base<List<ChapterUrl>, V> {
+class ContentPresenter<V extends View<List<ChapterUrl>>> extends Presenter.Base<List<ChapterUrl>, V> {
     ContentPresenter(V view) {
         super(view, new ChapterUrlModel());
     }

@@ -15,14 +15,14 @@ import rx.schedulers.Schedulers;
  * @version 2016-09-11
  * @since 2016-09-11
  */
-public interface Presenter<O, V extends View<? extends Presenter, O>> {
+public interface Presenter<O, V extends View<O>> {
     V getView();
 
     void request(Context context, String url);
 
     void request(Context context, String url, boolean forceRefresh);
 
-    abstract class Base<O, V extends View<? extends Base, O>> implements Presenter<O, V> {
+    abstract class Base<O, V extends View<O>> implements Presenter<O, V> {
         private final V mView;
         private final Model<O> mModel;
 
@@ -36,10 +36,12 @@ public interface Presenter<O, V extends View<? extends Presenter, O>> {
             return mView;
         }
 
+        @Override
         public void request(final Context context, final String url) {
             this.request(context, url, false);
         }
 
+        @Override
         public void request(final Context context, final String url, final boolean forceRefresh) {
             getView().showProgressDialog();
             Observable.create(new Observable.OnSubscribe<O>() {

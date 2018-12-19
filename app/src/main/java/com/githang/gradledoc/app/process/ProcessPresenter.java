@@ -10,7 +10,7 @@ import java.util.List;
  * @version 2016-09-11
  * @since 2016-09-11
  */
-class ProcessPresenter<V extends View<ProcessPresenter, List<Commit>>> extends Presenter.Base<List<Commit>, V> {
+class ProcessPresenter<V extends View<List<Commit>>> extends Presenter.Base<List<Commit>, V> {
     ProcessPresenter(V view) {
         super(view, new ProcessModel());
     }
