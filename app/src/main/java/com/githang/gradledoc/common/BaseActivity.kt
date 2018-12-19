@@ -29,9 +29,11 @@ open class BaseActivity : AppCompatActivity() {
         val toolbar: Toolbar? = findViewById(R.id.toolbar)
         if (toolbar != null) {
             setSupportActionBar(toolbar)
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayHomeAsUpEnabled(displayHomeAsUp())
         }
     }
+
+    open fun displayHomeAsUp() = true
 
     override fun onPause() {
         super.onPause()
