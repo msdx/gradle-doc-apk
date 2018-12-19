@@ -21,7 +21,7 @@ import com.umeng.analytics.MobclickAgent
 open class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        StatusBarCompat.setStatusBarColor(this, ActivityCompat.getColor(this, R.color.primary), false)
+        StatusBarCompat.setStatusBarColor(this, ActivityCompat.getColor(this, R.color.primary))
     }
 
     override fun setContentView(@LayoutRes layoutResID: Int) {
@@ -46,8 +46,7 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        if (id == android.R.id.home) {
+        if (item.itemId == android.R.id.home) {
             finish()
             return true
         }
