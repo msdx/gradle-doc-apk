@@ -77,6 +77,8 @@ dependencies {
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:cardview-v7:27.1.1'
+    // okhttp log interceptor
+    implementation 'com.parkingwang:okhttp3-loginterceptor:0.5'
     // json
     implementation "com.squareup.moshi:moshi-kotlin:1.8.0"
     // http

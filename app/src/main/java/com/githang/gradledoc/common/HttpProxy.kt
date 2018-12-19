@@ -1,5 +1,7 @@
 package com.githang.gradledoc.common
 
+import com.githang.gradledoc.BuildConfig
+import com.parkingwang.okhttp3.LogInterceptor.LogInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
@@ -18,6 +20,11 @@ object HttpProxy {
             .connectTimeout(TIMEOUT_SECOND.toLong(), TimeUnit.SECONDS)
             .readTimeout(TIMEOUT_SECOND.toLong(), TimeUnit.SECONDS)
             .writeTimeout(TIMEOUT_SECOND.toLong(), TimeUnit.SECONDS)
+            .apply {
+                if (BuildConfig.DEBUG) {
+                    addInterceptor(LogInterceptor())
+                }
+            }
             .build()
 
     @Throws(IOException::class)
