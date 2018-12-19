@@ -12,7 +12,7 @@ import com.githang.gradledoc.common.db.RequestResult
  * Time: 12:24
  */
 object HttpDBCache {
-    private const val DB_NAME = "http_cache_db"
+    private const val DB_NAME = "http_cache.db"
 
     private val DB: AppDatabase by lazy {
         Room.databaseBuilder(GradleApplication.context, AppDatabase::class.java, DB_NAME)
