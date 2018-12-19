@@ -77,7 +77,6 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     // html parser
     implementation 'org.jsoup:jsoup:1.11.3'
-    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     // 友盟
     implementation 'com.umeng.analytics:analytics:6.1.4'
     implementation 'com.githang:umeng-update:2.6.0.1'
