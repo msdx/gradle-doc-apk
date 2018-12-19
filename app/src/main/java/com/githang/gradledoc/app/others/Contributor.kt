@@ -1,6 +1,6 @@
 package com.githang.gradledoc.app.others
 
-import com.alibaba.fastjson.annotation.JSONField
+import com.squareup.moshi.Json
 
 /**
  * 贡献者
@@ -9,11 +9,8 @@ import com.alibaba.fastjson.annotation.JSONField
  * @version 2015-12-02
  * @since 2015-12-02
  */
-class Contributor {
-    @set:JSONField(name = "login")
-    var name: String? = null
-    @set:JSONField(name = "avatar_url")
-    var avatar: String? = null
-    @set:JSONField(name = "contributions")
-    var contributions: Int = 0
-}
+class Contributor(
+        @Json(name = "login") val name: String? = null,
+        @Json(name = "avatar_url") val avatar: String? = null,
+        @Json(name = "contributions") val contributions: Int = 0
+)

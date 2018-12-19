@@ -69,15 +69,16 @@ dependencies {
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:cardview-v7:27.1.1'
-
+    // json
+    implementation "com.squareup.moshi:moshi-kotlin:1.8.0"
+    // http
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    // html parser
     implementation 'org.jsoup:jsoup:1.11.3'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     // 友盟
     implementation 'com.umeng.analytics:analytics:6.1.4'
     implementation 'com.githang:umeng-update:2.6.0.1'
-    // json
-    implementation 'com.alibaba:fastjson:1.2.33'
     // android代码片段库
     implementation 'com.githang:androidsnippet:0.6.7'
     // 状态栏颜色

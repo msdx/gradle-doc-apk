@@ -1,6 +1,6 @@
 package com.githang.gradledoc.app.others
 
-import com.alibaba.fastjson.JSON
+import com.githang.gradledoc.common.Json
 import com.githang.gradledoc.common.Model
 
 /**
@@ -11,6 +11,6 @@ import com.githang.gradledoc.common.Model
 
 internal class ContributorModel : Model<List<Contributor>>() {
     override fun handleContent(content: String): List<Contributor>? {
-        return JSON.parseArray(content, Contributor::class.java)
+        return Json.parseArray(content)
     }
 }
