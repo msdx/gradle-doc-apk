@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/msdx/gradle-doc-apk.svg?branch=master)](https://travis-ci.org/msdx/gradle-doc-apk)
 
-Gradle UserGuide apk，支持 android 2.2以上。
+Gradle UserGuide apk，支持 android 4.0以上。
 
 Gradle用户指南，可以在地铁或路上随时查看Gradle双语文档。
 
