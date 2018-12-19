@@ -19,7 +19,7 @@ import java.util.List;
  * @version 2015-12-03
  * @since 2015-12-03
  */
-public abstract class ListActivity<T, P extends Presenter> extends BaseRefreshActivity<P, List<T>> implements ItemCreator<T, ItemHolder.DefaultHolder>, AdapterView.OnItemClickListener {
+public abstract class ListActivity<T> extends BaseRefreshActivity<List<T>> implements ItemCreator<T, ItemHolder.DefaultHolder>, AdapterView.OnItemClickListener {
     private ListView mListView;
     private BaseListAdapter<T, ItemHolder.DefaultHolder> mAdapter;
 

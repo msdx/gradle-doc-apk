@@ -5,7 +5,7 @@ package com.githang.gradledoc.common;
  * @version 2016-09-11
  * @since 2016-09-11
  */
-public interface View<P extends Presenter, O> {
+public interface View<O> {
     void showProgressDialog();
 
     void dismissProgressDialog();

@@ -13,7 +13,7 @@ import com.githang.gradledoc.R;
  * Date: 2014-12-03
  * Time: 21:59
  */
-public abstract class BaseRefreshActivity<P extends Presenter, O> extends BaseActivity implements View<P, O> {
+public abstract class BaseRefreshActivity<O> extends BaseActivity implements View<O> {
     private ProgressDialog mProgressDialog;
 
     @Override
