@@ -29,7 +29,7 @@ class ChapterActivity : BaseRefreshActivity<String>() {
         url = bundle.getString(Constants.URL)
         title = bundle.getString(Constants.TITLE)
 
-        presenter.request(this, url)
+        presenter.request(this, url ?: return)
     }
 
     private fun initView() {
@@ -48,8 +48,8 @@ class ChapterActivity : BaseRefreshActivity<String>() {
         presenter.request(this, url ?: return, true)
     }
 
-    override fun onHandle(content: String) {
-        docView.loadDataWithBaseURL(Constants.BASE_URL, content, "text/html", "charset=UTF-8", null)
+    override fun onHandle(data: String) {
+        docView.loadDataWithBaseURL(Constants.BASE_URL, data, "text/html", "charset=UTF-8", null)
     }
 
     override fun onDestroy() {

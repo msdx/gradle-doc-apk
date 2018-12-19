@@ -10,7 +10,7 @@ import com.githang.gradledoc.common.Model
  */
 
 internal class ContributorModel : Model<List<Contributor>>() {
-    override fun handleContent(content: String): List<Contributor>? {
-        return Json.parseArray(content)
+    override fun handleContent(content: String): List<Contributor> {
+        return Json.parseArray(content)?:ArrayList()
     }
 }

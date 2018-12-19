@@ -1,7 +1,6 @@
 package com.githang.gradledoc
 
 import android.app.Application
-import com.githang.gradledoc.common.HttpDBCache
 import com.umeng.analytics.MobclickAgent
 
 /**
@@ -11,12 +10,16 @@ import com.umeng.analytics.MobclickAgent
 class GradleApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+        GradleApplication.context = this
         initUmeng()
-        HttpDBCache.init(this)
     }
 
     private fun initUmeng() {
         MobclickAgent.setDebugMode(BuildConfig.DEBUG)
         MobclickAgent.setCatchUncaughtExceptions(true)
+    }
+
+    companion object {
+        lateinit var context: Application
     }
 }
