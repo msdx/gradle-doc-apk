@@ -6,9 +6,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-
-import com.githang.android.snippet.adapter.ItemHolder
 import com.githang.gradledoc.Constants
 import com.githang.gradledoc.R
 import com.githang.gradledoc.app.chapter.ChapterActivity
@@ -16,6 +13,7 @@ import com.githang.gradledoc.app.others.AboutActivity
 import com.githang.gradledoc.app.others.ContributorsActivity
 import com.githang.gradledoc.app.process.ProcessActivity
 import com.githang.gradledoc.common.ListActivity
+import com.githang.gradledoc.common.recycler.DefaultHolder
 import com.umeng.update.UmengUpdateAgent
 
 /**
@@ -76,21 +74,20 @@ class ContentsActivity : ListActivity<ChapterUrl>() {
         startActivity(intent)
     }
 
-    override fun createHolder(position: Int, parent: ViewGroup): ItemHolder.DefaultHolder {
-        val holder = ItemHolder.DefaultHolder(View.inflate(this, R.layout.item_contents, null))
+    override fun createHolder(parent: ViewGroup): DefaultHolder {
+        val holder = DefaultHolder(this, R.layout.item_contents, parent)
         holder.hold(R.id.text)
         return holder
     }
 
-    override fun bindData(position: Int, holder: ItemHolder.DefaultHolder, data: ChapterUrl) {
+    override fun bindData(position: Int, holder: DefaultHolder, data: ChapterUrl) {
         holder.setText(R.id.text, data.title)
     }
 
-    override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-        val chapterUrl = parent.adapter.getItem(position) as ChapterUrl
+    override fun onItemClick(view: View, position: Int, item: ChapterUrl) {
         val intent = Intent(this, ChapterActivity::class.java)
-        intent.putExtra(Constants.TITLE, chapterUrl.title)
-        intent.putExtra(Constants.URL, Constants.BASE_URL + chapterUrl.url)
+        intent.putExtra(Constants.TITLE, item.title)
+        intent.putExtra(Constants.URL, Constants.BASE_URL + item.url)
         startActivity(intent)
     }
 }

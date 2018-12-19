@@ -13,16 +13,12 @@
         android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar"
         android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="10dp"
-        android:footerDividersEnabled="true"
-        android:headerDividersEnabled="true"
         android:listSelector="@android:color/transparent"
         android:padding="16dp"
         android:scrollbars="none"

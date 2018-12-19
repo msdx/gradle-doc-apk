@@ -1,14 +1,15 @@
 package com.githang.gradledoc.common
 
+import android.graphics.Rect
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ListView
-
-import com.githang.android.snippet.adapter.BaseListAdapter
-import com.githang.android.snippet.adapter.ItemCreator
-import com.githang.android.snippet.adapter.ItemHolder
 import com.githang.gradledoc.R
+import com.githang.gradledoc.common.recycler.BaseListAdapter
+import com.githang.gradledoc.common.recycler.DefaultHolder
+import com.githang.gradledoc.common.recycler.ItemCreator
+import com.githang.gradledoc.common.recycler.OnItemClickListener
 
 /**
  * 列表界面
@@ -17,26 +18,32 @@ import com.githang.gradledoc.R
  * @version 2015-12-03
  * @since 2015-12-03
  */
-abstract class ListActivity<T> : BaseRefreshActivity<List<T>>(), ItemCreator<T, ItemHolder.DefaultHolder>, AdapterView.OnItemClickListener {
-    private lateinit var listView: ListView
-    private lateinit var adapter: BaseListAdapter<T, ItemHolder.DefaultHolder>
+abstract class ListActivity<T> : BaseRefreshActivity<List<T>>(), ItemCreator<T, DefaultHolder>, OnItemClickListener<T> {
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: BaseListAdapter<T, DefaultHolder>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
-        listView = findViewById<View>(android.R.id.list) as ListView
-        adapter = BaseListAdapter<T, ItemHolder.DefaultHolder>(this)
-        listView.adapter = adapter
-        listView.onItemClickListener = this
+        recyclerView = findViewById(android.R.id.list)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val dividerHeight = resources.getDimensionPixelSize(R.dimen.divider_height)
+        recyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(outRect: Rect, view: View?, parent: RecyclerView, state: RecyclerView.State?) {
+                if (parent.getChildAdapterPosition(view) != 0) {
+                    outRect.set(0, dividerHeight, 0, 0)
+                }
+            }
+        })
+        adapter = BaseListAdapter(this)
+        adapter.onItemClickListener = this
+        recyclerView.adapter = adapter
     }
 
-    protected fun update(data: List<T>) {
-        adapter.update(data)
-    }
-
-    override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {}
+    override fun onItemClick(view: View, position: Int, item: T) {}
 
     override fun onHandle(data: List<T>) {
-        update(data)
+        adapter.update(data)
     }
 }
