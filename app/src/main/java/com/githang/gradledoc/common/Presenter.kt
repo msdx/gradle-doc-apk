@@ -48,6 +48,7 @@ interface Presenter<O, V : View<O>> {
                     }, { throwable ->
                         throwable.printStackTrace()
                         view.showToast(throwable.message ?: return@subscribe)
+                        view.dismissProgressDialog()
                     })
         }
     }
