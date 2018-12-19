@@ -11,13 +11,13 @@ import java.io.IOException
 abstract class Model<T> {
 
     fun requestFromCache(url: String): String? {
-        return HttpDBCache.INSTANCE.queryResponse(url)
+        return HttpDBCache.queryResponse(url)
     }
 
     @Throws(IOException::class)
     fun requestFromNetwork(url: String): String {
         val content = HttpProxy.loadFromNetwork(url)
-        HttpDBCache.INSTANCE.saveResponse(url, content)
+        HttpDBCache.saveResponse(url, content)
         return content
     }
 
