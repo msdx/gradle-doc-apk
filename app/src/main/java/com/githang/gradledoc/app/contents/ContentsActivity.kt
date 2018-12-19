@@ -70,6 +70,12 @@ class ContentsActivity : ListActivity<ChapterUrl>() {
         }
     }
 
+    override fun onBackPressed() {
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.addCategory(Intent.CATEGORY_HOME)
+        startActivity(intent)
+    }
+
     override fun createHolder(position: Int, parent: ViewGroup): ItemHolder.DefaultHolder {
         val holder = ItemHolder.DefaultHolder(View.inflate(this, R.layout.item_contents, null))
         holder.hold(R.id.text)
