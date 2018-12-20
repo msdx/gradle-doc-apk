@@ -12,7 +12,7 @@ import com.githang.gradledoc.app.chapter.ChapterActivity
 import com.githang.gradledoc.app.others.AboutActivity
 import com.githang.gradledoc.app.others.ContributorsActivity
 import com.githang.gradledoc.app.process.ProcessActivity
-import com.githang.gradledoc.common.ListActivity
+import com.githang.gradledoc.common.activity.ListActivity
 import com.umeng.update.UmengUpdateAgent
 
 /**

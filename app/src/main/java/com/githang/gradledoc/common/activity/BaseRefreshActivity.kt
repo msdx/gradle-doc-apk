@@ -1,10 +1,11 @@
-package com.githang.gradledoc.common
+package com.githang.gradledoc.common.activity
 
 import android.app.ProgressDialog
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.githang.gradledoc.R
+import com.githang.gradledoc.common.View
 
 /**
  * User: Geek_Soledad(msdx.android@qq.com)

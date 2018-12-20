@@ -5,7 +5,7 @@ import android.widget.TextView
 
 import com.githang.gradledoc.BuildConfig
 import com.githang.gradledoc.R
-import com.githang.gradledoc.common.BaseActivity
+import com.githang.gradledoc.common.activity.BaseActivity
 
 class AboutActivity : BaseActivity() {
 

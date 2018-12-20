@@ -1,4 +1,4 @@
-package com.githang.gradledoc.common
+package com.githang.gradledoc.common.activity
 
 import android.graphics.Rect
 import android.os.Bundle

@@ -7,7 +7,7 @@ import android.webkit.WebView
 
 import com.githang.gradledoc.Constants
 import com.githang.gradledoc.R
-import com.githang.gradledoc.common.BaseRefreshActivity
+import com.githang.gradledoc.common.activity.BaseRefreshActivity
 
 /**
  * 文章内容

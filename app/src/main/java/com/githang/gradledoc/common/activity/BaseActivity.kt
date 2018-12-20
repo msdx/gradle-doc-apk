@@ -1,4 +1,4 @@
-package com.githang.gradledoc.common
+package com.githang.gradledoc.common.activity
 
 import android.annotation.SuppressLint
 import android.app.Activity

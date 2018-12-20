@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.githang.gradledoc.BR
 import com.githang.gradledoc.Constants
 import com.githang.gradledoc.R
-import com.githang.gradledoc.common.ListActivity
+import com.githang.gradledoc.common.activity.ListActivity
 
 /**
  * 贡献。
