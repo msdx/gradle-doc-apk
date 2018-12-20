@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
+import com.githang.gradledoc.BR
 import com.githang.gradledoc.Constants
 import com.githang.gradledoc.R
 import com.githang.gradledoc.app.chapter.ChapterActivity
@@ -13,7 +13,6 @@ import com.githang.gradledoc.app.others.AboutActivity
 import com.githang.gradledoc.app.others.ContributorsActivity
 import com.githang.gradledoc.app.process.ProcessActivity
 import com.githang.gradledoc.common.ListActivity
-import com.githang.gradledoc.common.recycler.DefaultHolder
 import com.umeng.update.UmengUpdateAgent
 
 /**
@@ -22,6 +21,9 @@ import com.umeng.update.UmengUpdateAgent
  * @author Geek_Soledad (msdx.android@qq.com)
  */
 class ContentsActivity : ListActivity<ChapterUrl>() {
+    override val itemLayoutId: Int = R.layout.item_contents
+    override val itemBrId: Int = BR.chapterUrl
+
     private val presenter = ContentPresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,16 +74,6 @@ class ContentsActivity : ListActivity<ChapterUrl>() {
         val intent = Intent(Intent.ACTION_MAIN)
         intent.addCategory(Intent.CATEGORY_HOME)
         startActivity(intent)
-    }
-
-    override fun createHolder(parent: ViewGroup): DefaultHolder {
-        val holder = DefaultHolder(this, R.layout.item_contents, parent)
-        holder.hold(R.id.text)
-        return holder
-    }
-
-    override fun bindData(position: Int, holder: DefaultHolder, data: ChapterUrl) {
-        holder.setText(R.id.text, data.title)
     }
 
     override fun onItemClick(view: View, position: Int, item: ChapterUrl) {

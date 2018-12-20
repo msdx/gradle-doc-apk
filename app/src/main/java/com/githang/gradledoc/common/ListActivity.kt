@@ -7,8 +7,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.githang.gradledoc.R
 import com.githang.gradledoc.common.recycler.BaseListAdapter
-import com.githang.gradledoc.common.recycler.DefaultHolder
-import com.githang.gradledoc.common.recycler.ItemCreator
 import com.githang.gradledoc.common.recycler.OnItemClickListener
 
 /**
@@ -18,9 +16,13 @@ import com.githang.gradledoc.common.recycler.OnItemClickListener
  * @version 2015-12-03
  * @since 2015-12-03
  */
-abstract class ListActivity<T> : BaseRefreshActivity<List<T>>(), ItemCreator<T, DefaultHolder>, OnItemClickListener<T> {
+abstract class ListActivity<T> : BaseRefreshActivity<List<T>>(), OnItemClickListener<T> {
+
+    protected abstract val itemLayoutId: Int
+    protected abstract val itemBrId: Int
+
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: BaseListAdapter<T, DefaultHolder>
+    private lateinit var adapter: BaseListAdapter<T>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +38,7 @@ abstract class ListActivity<T> : BaseRefreshActivity<List<T>>(), ItemCreator<T, 
                 }
             }
         })
-        adapter = BaseListAdapter(this)
+        adapter = BaseListAdapter(itemLayoutId, itemBrId)
         adapter.onItemClickListener = this
         recyclerView.adapter = adapter
     }

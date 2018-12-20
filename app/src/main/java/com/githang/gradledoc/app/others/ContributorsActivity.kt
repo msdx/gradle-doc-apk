@@ -1,13 +1,10 @@
 package com.githang.gradledoc.app.others
 
 import android.os.Bundle
-import android.view.ViewGroup
-import android.widget.ImageView
+import com.githang.gradledoc.BR
 import com.githang.gradledoc.Constants
 import com.githang.gradledoc.R
-import com.githang.gradledoc.common.ImageLoader
 import com.githang.gradledoc.common.ListActivity
-import com.githang.gradledoc.common.recycler.DefaultHolder
 
 /**
  * 贡献。
@@ -17,6 +14,8 @@ import com.githang.gradledoc.common.recycler.DefaultHolder
  * @since 2015-12-02
  */
 class ContributorsActivity : ListActivity<Contributor>() {
+    override val itemLayoutId: Int = R.layout.item_contributor
+    override val itemBrId: Int = BR.contributor
 
     private val presenter = ContributorsPresenter(this)
 
@@ -28,18 +27,5 @@ class ContributorsActivity : ListActivity<Contributor>() {
     override fun onRefresh() {
         showProgressDialog()
         presenter.request(this, Constants.URL_CONTRIBUTORS, true)
-    }
-
-    override fun createHolder(parent: ViewGroup): DefaultHolder {
-        val holder = DefaultHolder(this, R.layout.item_contributor, parent)
-        holder.hold(R.id.name, R.id.contributions, R.id.avatar)
-        return holder
-    }
-
-    override fun bindData(position: Int, holder: DefaultHolder, data: Contributor) {
-        holder.setText(R.id.name, data.name)
-        holder.setText(R.id.contributions, data.contributions.toString() + " contributions")
-        val imageView = holder.get<ImageView>(R.id.avatar)
-        ImageLoader.loadImage(data.avatar, imageView)
     }
 }

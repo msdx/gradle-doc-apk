@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    style="@style/RippleCardView"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<layout>
+    <data>
+        <variable
+            name="chapterUrl"
+            type="com.githang.gradledoc.app.contents.ChapterUrl"/>
+    </data>
+    <android.support.v7.widget.CardView
+        style="@style/RippleCardView"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/text"
-        style="@style/ListViewItem"
-        android:gravity="center_vertical"
-        android:padding="16dp"
-        android:shadowColor="@color/grey"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="3"/>
-</android.support.v7.widget.CardView>
+        <TextView
+            android:id="@+id/text"
+            style="@style/ListViewItem"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:shadowColor="@color/grey"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="3"
+            android:text="@{chapterUrl.title}"/>
+    </android.support.v7.widget.CardView>
+</layout>
