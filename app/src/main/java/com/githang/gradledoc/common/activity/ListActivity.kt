@@ -32,7 +32,8 @@ abstract class ListActivity<T> : BaseRefreshActivity<List<T>>(), OnItemClickList
 
         val dividerHeight = resources.getDimensionPixelSize(R.dimen.divider_height)
         recyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(outRect: Rect, view: View?, parent: RecyclerView, state: RecyclerView.State?) {
+
+            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
                 if (parent.getChildAdapterPosition(view) != 0) {
                     outRect.set(0, dividerHeight, 0, 0)
                 }
