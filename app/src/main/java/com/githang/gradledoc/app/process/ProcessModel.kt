@@ -13,11 +13,13 @@ import java.util.ArrayList
 internal class ProcessModel : Model<List<Commit>>() {
     override fun handleContent(content: String): List<Commit> {
         val doc = Jsoup.parse(content)
-        val elements = doc.select("div[class=table-list-cell]")
+        val elements = doc.select("div[class='flex-auto min-width-0']")
         val commits = ArrayList<Commit>(elements.size)
         for (elem in elements) {
+            val titleElem = elem.select("p[class='commit-title h5 mb-1 text-gray-dark']")
+                    ?: continue
             val commit = Commit()
-            commit.title = elem.select("p.commit-title").text()
+            commit.title = titleElem.text()
             commit.meta = elem.select("div.commit-meta").text()
             commits.add(commit)
         }
